@@ -36,10 +36,7 @@
       6. 指數時間 (Exponential Time) => O(2^n)，例如：費式數列
       7. 階乘時間 (Factorial Time) => O(n!)
 
-<div style="text-align:center">
-    <img src="../img/big_o_complexity_chart.jpeg" alt= “big_o_complexity_chart.jpeg” width="60%">
-    <p>Big O Complexity Chart</p>
-</div>
+  * 空間複雜度 (Space Complexity)
 
 * 傳值呼叫、傳址呼叫、參考呼叫
 
@@ -60,6 +57,23 @@
     ```C++
     int callByReference(int &a, int &b){...}
     ```
+
+* 編譯與執行的過程
+
+  * source code (.c, .h) -> Preprocessor (.c) -> Compiler (.s) -> Assembler (.o) -> Linker (.exe) -> Loader  -> CPU
+    1. 原始碼 (source code): 副檔名為 .c，標頭檔副檔名為 .h。
+    2. [Build] 預處理器 (Preprocessor): 將須引入的檔案或是 macro 展開。
+    3. [Build] 編譯器 (Compiler): C 語言常見的編譯器有 GCC、Clang，在此 GCC 為廣義的編譯器，可以達到 build 的所有功能。狹義的編譯器，主要就是將 C 語言轉成組合語言，產出 .s, .asm 檔。
+    4. [Build] 組譯器 (Assembler): 將低階語言所寫的程式翻譯成目的檔，為 .o 檔。
+    5. [Build] 連結器 (Linker): 將多個目的檔或靜態函式庫 (Static library, .a, .lib) 合併成一個可執行檔 (.exe, .out) 或函式庫的工具。
+    6. [Run] 載入器 (Loader): 是作業系統的一部份，用於把程式和動態函式庫 (Shared library, .so, .dll) 的指令載入到記憶體 (RAM) 中等待 CPU 執行，當載入完成之後，作業系統會將控制權交給載入的程式碼，讓它開始運作。
+    7. [Run] CPU: 對載入的指令進行運算或儲存等操作。
+
+* Error
+
+  * 語法錯誤 (Syntax error): 不符合語言的規定，將編譯後所指出的錯誤修正，再重新編譯即可。
+  * 語意錯誤 (Semantic error): 程式本身的語法沒有問題，但邏輯上可能有瑕疵，造成非預期性的結果。
+  * 記憶體區段錯誤 (Segmentation fault, 縮寫 segfault): 也稱存取權限衝突 (access violation)，是一種程式錯誤。
 
 ## Basic ##
 
@@ -205,6 +219,8 @@
     }
     ```
 
+* array
+
 * struct
 
   * 產生一種新的資料型態，每個成員變數都配置一段空間
@@ -222,6 +238,25 @@
 
   * 一組由識別字所代表的整數常數
   * 除非特別指定，不然都是由0開始，接下來遞增1
+
+* Linked List
+
+* Stack
+
+* Queue
+
+* Heap
+
+* Tree
+
+  * 種類
+    * 二元樹 (Binary Tree)
+    * 二元搜尋樹 (Binary Search Tree, BST)
+    * 平衡樹 (Self-balanced Binary Search Tree, height-balance binary search tree)
+
+* Graph
+
+* Hash table
 
 ## Loops ##
 
@@ -388,7 +423,9 @@
 
 ## Algorithm ##
 
-* 二元搜尋 (Binary search)
+* 線性搜尋 (Linear Search)
+
+* 二元搜尋演算法 (Binary Search Algorithm)
 
     ```C
     int binsearch(int *arr, int searchNum, int arrSize)
@@ -411,3 +448,5 @@
         return -1; // not found
     }
     ```
+
+* 

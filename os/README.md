@@ -29,6 +29,10 @@
 
 ## Process ##
 
+## Thread ##
+
+* 單執行緒 (single thread) 和多執行緒 (multi thread)
+
 ## Deadlock ##
 
 ## Race Condition ##
@@ -40,3 +44,13 @@
 
 * 什麼是 pipelin ?
   * 是為了讓計算機和其它數位電子裝置能夠加速指令的通過速度 (單位時間內被執行的指令數量) 而設計的技術。
+
+## Socket ##
+
+* 由一個 IP 位址和一個埠號碼 (port number) 所組成。
+
+## Mutex ##
+
+## Semophore ##
+
+## Paging ##
