@@ -257,6 +257,20 @@
 * array
 
 * Linked List
+  * 若存放串列元素的記憶體是循序的，則此串列稱為循序串列 (sequential list)；若存放串列元素的記憶體並不連續，而必須以指標將他們鏈結起來，則稱為鏈結串列 (linked list)。
+  * 終端節點已是最後一個節點，所以將第二個成員，亦即指標設成 NULL。
+  * 常用的操作
+    * 建立 create
+    * 列印 print、走訪 traverse
+    * 插入 insert
+      1. 插入至第一個
+      2. 插入至串列中
+    * 刪除 delete
+      1. 串列為空，不進行刪除
+      2. 刪除串列第一個
+      3. 刪除串列中任意一個
+    * 搜尋 search
+    * 釋放 free
 
 * Stack
 
@@ -276,6 +290,24 @@
 * Hash table
 
 ## Loops ##
+
+* 遞迴函數 (Recursive function)
+  * 函數本身呼叫自己
+  * 舉例
+    * 階層函數 (factorial function)
+    * 河內塔 (hanoi tower)
+    * 費式數列 (fibonacci)
+    * 二元數搜尋法 (binary search)
+    * 最大公因數 (highest common factor，hcf)
+    * 十進位轉換成二進位
+  * 優點
+    * 使程式碼變得簡潔。
+  * 缺點
+    * 占用記憶體，存放未執行完畢的部分。
+    * 當遞迴函數的層數很大時，就必須要有較大的記憶體。
+  * 注意事項
+    * 一定要有終止條件，使函數得以返回上層呼叫的地方。
+    * 並非以遞迴的方式所撰寫的函數執行起來就比較有效率。
 
 * 無窮迴圈 (Infinite loops)
 
@@ -312,6 +344,60 @@
 
 ## I/O ##
 
+* 輸出函數 printf()
+  * printf with modifiers
+    | modifiers | func | example |
+    | --- | --- | --- |
+    | 數字 | 3個欄位寬度 | %3d |
+    | 數字 | 6個欄位寬度，小數點佔2個 | %6.2f |
+    | - | 靠左對齊 | %-3d |
+    | + | 將數值的正負號顯示出來 | %+3d |
+    | 空白 | 數值為正時，留一格空白；為負時，顯示負號 | % 6f |
+    | 0 | 將固定欄位長度的數值前空白處填上0。(與負號同時使用時，此功能無效) | % 6f |
+
+* 輸入函數 scanf()
+  * 使用 scanf() 函數應注意的事項
+    * 在 Dos 和 Windows 中，輸入結束後，按下 enter ，scanf() 將接收到歸位字元 (carriage return, \r) ，便會判定輸入完畢，換行字元 (line feed, \n) 將留在輸入緩衝區 (buffer) 中。下一次 scanf() 讀取字元時，跳過不可列印字元即可，亦即在 %c 前面加一個空白。
+
+    * 處理 buffer 中的不可列印字元
+      1. scanf 中，在 %c 前面加上一個空格，跳過不可列印字元。
+
+          ```C
+          scanf(" %c", &ch);
+          ```
+
+      2. 吸收空格這個字元
+
+          ```C
+          getchar();
+          ```
+
+* 輸入函數 get
+  * gets(): 允許字串裡有空白字元，語法比 scanf() 更簡潔。 (須按下 enter)
+  * getchar(): (須按下 enter)
+  * getch(): 字元不會回應在螢幕上。 (不須按下 enter)
+  * getche(): e 代表 echo ，字元被接收後，將立刻回應到螢幕上。 (不須按下 enter)
+
+* 輸出函數 put
+  * putchar()
+  * puts(): 輸出字串後會自動換行，所以使用的頻率較 printf() 低。
+
+* Terminal 中，處理 signal
+  * 終止正在執行的程式 (ctrl - c): ascii 碼為 3 。
+    * 按下 ctrl - c 時， terminal 會發送了一個 SIGINT (中斷訊號) 給 Shell ， Shell 再把 SIGINT 轉發給 ping process ，最後 ping process 收到後就會自己停掉。
+  * 暫停正在執行的程式 (ctrl - z): ascii 碼為 26 。
+
+    ```C
+    #include <conio.h>
+
+    char ch
+    while(ch != 3){
+        ch = getch();
+        printf("ASCII of ch=%d\n", ch);
+    }
+    printf("已按了 ctrl-c ...\n");
+    ```
+
 ## Keyword ##
 
 * 關鍵字 static 的作用是什麼?
@@ -339,69 +425,180 @@
 * 關鍵字 volatile 有什麼含意？
 
 * 變數範圍和生命周期
+  * 區域變數 (loacl variable): local 變數僅活在該函式內，存放位置在 stack 或 heap 記憶體中。
+  * 靜態變數 (static variable)
+    * 在編譯時，就已配置固定的記憶體空間，使靜態變數的值得以保存。
+    * 再次呼叫該函數時，會將靜態變數存在記憶體空間中的值取出來用。
+    * 作用
+      1. 在函數本體內，一個被宣告為靜態的變數，在這一函數被呼叫過程中，其值不變。
+      2. 在一個 block 中，一個被宣告為靜態的變數，可以被 block 內的所有函數存取，但不能被 block 外的其他函數存取。是一個本地的全局變量。
+      3. 在一個 block 中，一個被宣告為靜態的函數，可以被 block 內的其他函數呼叫，但不能在 block 外被呼叫。
+  * 全域變數 (global variable): 所有區段皆可使用此變數。
 
-  * local 變數 : local 變數僅活在該函式內，存放位置在 stack 或 heap 記憶體中。
-  * static 變數 : static 變數生命周期 (life time) 跟程式一樣長，而範圍 (scope) 則維持不變，即在宣告的函式之外仍無法存取 static 變數。
-  * global 變數 : 所有區段皆可使用此變數。
+* 關鍵字 sizeof
+  * 查詢常數、變數、指針或資料型態所占位元組
+  * struct
+    * 對齊原則：每一成員需對齊爲後一成員類型的倍數
+    * 補齊原則：最終大小補齊爲成員類型最大值的倍數
+
+    ```C
+    // sizeof(struct A) = 16 bytes
+    struct A{
+        int a;
+        short b;
+        int c;
+        char d;
+    };
+    // sizeof(struct B) = 12 bytes
+    struct B{
+        int a;
+        short b;
+        char c;
+        int d;
+    };
+    // sizeof(struct C) = 12 bytes
+    struct C{
+        uint8_t a[3];
+        uint32_t b[2];
+    };
+    ```
 
 ## Pointer ##
 
+* 在 printf() 以 16 進位 (hex) 顯示，格式碼需使用 %p 。
+
+  ```C
+  int a = 1;
+  int *ptr = &a;
+  printf("address of a is %p\n", ptr);
+  printf("value of a is %d\n", *ptr);
+  printf("address of ptr is %p\n", &ptr);
+  ```
+
 * 用變數 a 給出下面的定義
 
-    ```C
-    int a; // 一個整型數
-    int *a; // 一個指向整數的指標
-    int **a; // 一個指向指標的指標，它指向的指標是指向一個整型數
-    int a[10]; // 一個有10個整數型的陣列
-    int *a[10]; // 一個有10個指標的陣列，該指標是指向一個整數型的
-    int (*a)[10]; // 一個指向有10個整數型陣列的指標
-    int (*a)(int); // 一個指向函數的指標，該函數有一個整數型參數並返回一個整數
-    int (*a[10])(int); // 一個有10個指標的陣列，該指標指向一個函數，該函數有一個整數型參數並返回一個整數
-    ```
+  ```C
+  int a; // 一個整型數
+  int *a; // 一個指向整數的指標
+  int **a; // 一個指向指標的指標，它指向的指標是指向一個整型數
+  int a[10]; // 一個有10個整數型的陣列
+  int *a[10]; // 一個有10個指標的陣列，該指標是指向一個整數型的
+  int (*a)[10]; // 一個指向有10個整數型陣列的指標
+  int (*a)(int); // 一個指向函數的指標，該函數有一個整數型參數並返回一個整數
+  int (*a[10])(int); // 一個有10個指標的陣列，該指標指向一個函數，該函數有一個整數型參數並返回一個整數
+  ```
 
 * 輸出是什麼?
 
-    ```C
-    char *ptr;
-    if ((ptr = (char *)malloc(0)) == NULL)
-        puts("Got a null pointer");
-    else  puts("Got a valid pointer");
-    ```
+  ```C
+  char *ptr;
+  if ((ptr = (char *)malloc(0)) == NULL)
+      puts("Got a null pointer");
+  else  puts("Got a valid pointer");
+  ```
 
 * 要求設定一個絕對位址為 0x67a9 的整數型變數的值為 0xaa55
 
-    ```C
-    int *ptr;
-    ptr = (int *)0x67a9; // 將一個整數型強製轉型 (typecast) 為一指標是合法的
-    *ptr = 0xaa55;
-    ```
+  ```C
+  int *ptr;
+  ptr = (int *)0x67a9; // 將一個整數型強製轉型 (typecast) 為一指標是合法的
+  *ptr = 0xaa55;
+  ```
+
+* 雙重指標 - 指向指標的指標
+  * 利用雙重指標來表示二為陣列的元素
+  * 利用指標表示陣列 arr\[m][n] 元素的位址  ，可寫成 \*(arr+m)+n
+  * 利用指標表示陣列 arr\[m][n] 元素  ，可寫成 \*(*(arr+m)+n)
+  * arr\[0][0] 的值若以指標來表示，可以寫成 **num 。
+
+* 運算子優先序
+  * 遞增遞減 (++, --) > 取值 (*) > 算術 (+, -)
+    * \*ptr++ 相當於 *(ptr++)
+    * \*ptr-- 相當於 *(ptr--)
+    * \*ptr+1 相當於 (*ptr)+1
+    * \*ptr-1 相當於 (*ptr)-1
+
+* 指標變數建立字串 的走訪
+  * while(*ptr != '\0'){}
+  * for(int i = 0; *(ptr + i) != '\0'; i++){}
+
 
 ## Preprocessor ##
 
+* 種類
+  * #include : 引入標頭檔
+  * #define : 定義符號常數、定義巨集 (marco ，大陸翻譯:宏定義) ，不可以加分號
+  * 條件編譯
+    * #if, #elif, #define
+    * #ifdef, #ifndef, #if defined(), #if !defined()
+    * #else
+    * #endif
+  * #undef : 刪除巨集定義
+  * #error
+
+* marco : 簡單的函數
+  1. 有引數，無引數
+  2. trade-off: 相較於函數，占用記憶體較多，但程式的執行流程不用移轉，因而程式執行的速度較快。
+
 * 用預處理指令 #define 聲明一個常數，用以表示1年中有多少秒 (忽略閏年問題)
 
-    ```C
-    #define SECONDS_PER_YEAR (60 * 60 * 24 * 365)UL
-    ```
+  ```C
+  #define SECONDS_PER_YEAR (60 * 60 * 24 * 365)UL
+  ```
 
 * 寫一個“標準”巨集 MIN ，這個巨集輸入兩個參數並返回較小的一個
 
-    ```C
-    #define MIN(A, B) ((A) <= (B) ? (A) : (B))
-    ```
+  ```C
+  #define MIN(A, B) ((A) <= (B) ? (A) : (B))
+  ```
 
 * 引入防護和條件編譯 (Include guard)
 
-    ```C
-    #ifdef MYHEADER
-    #define MYHEADER
-        // part A
-    #else
-        // part B
-    #endif
-    ```
+  ```C
+  #ifdef MYHEADER
+  #define MYHEADER
+      // part A
+  #else
+      // part B
+  #endif
+  ```
 
 ## String ##
+
+* sizeof 運算子是一個一元運算子。運算之結果的型別為 size_t ，其實就是無號整數(long long unsigned int)，在 printf() 中，需使用 %llu 。
+
+* C 語言中，字串使用""括住，在宣告時，則會自動在字串的尾端幫你補上'\0'。
+
+  ```C
+  char ch1 = 'a';
+  printf("sizeof(ch1) is %llu.\n", sizeof(ch1)); // 1
+  char ch2[] = "a";
+  printf("sizeof(ch2) is %llu.\n", sizeof(ch2)); // 2
+  ```
+
+* C 語言中，在字元陣列 (char array) 的結尾加上字串結束字元 '\0' ，即為字串。
+
+  ```C
+  char str[] = {'s','t','r','i','n','g','\0'};
+  printf("%s\n", str); // 使用 %s ，輸出 string
+  ```
+
+* string.h 的函式庫
+  * strlen( s ) : 返回的型別也是 size_t ，不包括 '\0' 或 Null 。
+
+    ```C
+    #inlcude <string.h>
+
+    char s1[] = "hello";
+    printf("strlen(s1) is %llu\n", strlen(s1)); // 5
+    char s2[] = {'h','e','l','l','o','\0'};
+    printf("strlen(s2) is %llu\n", strlen(s2)); // 5
+    char *s3 = "hello";
+    printf("strlen(s3) is %llu\n", strlen(s3)); // 5
+    ```
+
+  * strcpy( s1, s2 ) :
+  * strcmp( s1, s2 ) :
 
 ## C Standard Library ##
 
@@ -417,7 +614,7 @@
     * complex.h、fenv.h、inttypes.h、stdbool.h、stdint.h 和 tgmath.h
 
   * C11標準中又新增了5個標頭檔
-    * stdalign.h、stdatomic.h、stdnoreturn.h、threads.h和uchar.h
+    * stdalign.h、stdatomic.h、stdnoreturn.h、threads.h 和 uchar.h
 
 * 記憶體複製
 
@@ -427,16 +624,16 @@
 
 * 字串複製
 
-    ```C
-    const char *str1 = "abc\0def";
-    char str2[16] = {0};
-    char str3[16] = {0};
+  ```C
+  const char *str1 = "abc\0def";
+  char str2[16] = {0};
+  char str3[16] = {0};
 
-    strcpy(str2, str1);
-    memcpy(str3, str1, sizeof(str3)); // 8
-    printf("str2 = %s\n", str2);    // str2 = abc
-    printf("str3 = %c\n", str3[5]); // str3 = e
-    ```
+  strcpy(str2, str1);
+  memcpy(str3, str1, sizeof(str3)); // 8
+  printf("str2 = %s\n", str2);    // str2 = abc
+  printf("str3 = %c\n", str3[5]); // str3 = e
+  ```
 
 ## Algorithm ##
 
@@ -444,24 +641,30 @@
 
 * 二元搜尋演算法 (Binary Search Algorithm)
 
-    ```C
-    int binsearch(int *arr, int searchNum, int arrSize)
-    {
-        int left = 0, right = n;
-        while (left <= right)
-        {
-            int mid = (left + right) / 2;
-            if (arr[mid] > k)
-            { // 往左半部找
-                right = mid - 1;
-            }
-            else if (arr[mid] < k)
-            { // 往右半部找
-                left = mid + 1;
-            }
-            else
-                return mid;
-        }
-        return -1; // not found
-    }
-    ```
+  ```C
+  int binsearch(int *arr, int searchNum, int arrSize)
+  {
+      int left = 0, right = n;
+      while (left <= right)
+      {
+          int mid = (left + right) / 2;
+          if (arr[mid] > k)
+          { // 往左半部找
+              right = mid - 1;
+          }
+          else if (arr[mid] < k)
+          { // 往右半部找
+              left = mid + 1;
+          }
+          else
+              return mid;
+      }
+      return -1; // not found
+  }
+  ```
+
+* swap
+  * 使用額外一個變數
+  * 加減法運算
+  * 位元運算
+  * 使用 define
