@@ -11,6 +11,7 @@
 * [Noun Definition](#noun-definition)
 * [Basic](#basic)
 * [Bitwise](#bitwise)
+* [Data Type](#data-type)
 * [Data Structure](#data-structure)
 * [Loops](#loops)
 * [I/O](#io)
@@ -24,7 +25,6 @@
 ## Noun Definition ##
 
 * 複雜度
-
   * 時間複雜度 (Time Complexity)
     * Big O
     * 排序: 1 (常數) < log n < n < n log n < n^2 < 2^n < n!
@@ -35,11 +35,9 @@
       5. 次方時間 (Quadratic Time) => O(n^2)，例如：選擇排序
       6. 指數時間 (Exponential Time) => O(2^n)，例如：費式數列
       7. 階乘時間 (Factorial Time) => O(n!)
-
   * 空間複雜度 (Space Complexity)
 
 * 傳值呼叫、傳址呼叫、參考呼叫
-
   * 傳值呼叫 (call by value)
 
     ```C
@@ -59,7 +57,6 @@
     ```
 
 * 編譯與執行的過程
-
   * source code (.c, .h) -> Preprocessor (.c) -> Compiler (.s) -> Assembler (.o) -> Linker (.exe) -> Loader  -> CPU
     1. 原始碼 (source code): 副檔名為 .c，標頭檔副檔名為 .h。
     2. [Build] 預處理器 (Preprocessor): 將須引入的檔案或是 macro 展開。
@@ -69,11 +66,14 @@
     6. [Run] 載入器 (Loader): 是作業系統的一部份，用於把程式和動態函式庫 (Shared library, .so, .dll) 的指令載入到記憶體 (RAM) 中等待 CPU 執行，當載入完成之後，作業系統會將控制權交給載入的程式碼，讓它開始運作。
     7. [Run] CPU: 對載入的指令進行運算或儲存等操作。
 
-* Error
-
+* 偵錯 (Debug)
   * 語法錯誤 (Syntax error): 不符合語言的規定，將編譯後所指出的錯誤修正，再重新編譯即可。
   * 語意錯誤 (Semantic error): 程式本身的語法沒有問題，但邏輯上可能有瑕疵，造成非預期性的結果。
   * 記憶體區段錯誤 (Segmentation fault, 縮寫 segfault): 也稱存取權限衝突 (access violation)，是一種程式錯誤。
+
+* 識別字及關鍵字
+  * 識別字 (Identifier): 使用者自訂的變數與函數名稱。
+  * 關鍵字 (Keyword): 編譯程式本身使用的識別字。
 
 ## Basic ##
 
@@ -203,11 +203,7 @@
     }
     ```
 
-## Data Structure ##
-
-* unsigned int
-
-  * 當表達式中，存在有符號類型和無符號類型時所有的操作數都自動轉換為無符號類型 (unsigned)，因
+* 當表達式中，存在有符號類型和無符號類型時所有的操作數都自動轉換為無符號類型 (unsigned)，因
 此 -20 變成了一個非常大的正整數。
 
     ```C
@@ -219,25 +215,46 @@
     }
     ```
 
+## Data Type ##
+
+* x86_64, x64, AMD64 皆可以代表為 64-bits CPU。
+
+* 基本資料型態 (Primitive Data Types)
+    |  | 32-bits CPU (x86) | 64-bits CPU (x86_64) | format str | #include <stdint.h> |
+    | --- | --- | --- | --- | --- |
+    |  | Size(bytes) | Size(bytes) |  | Typedef |
+    | _Bool | 1 | 1 | %i、%d |  |
+    | unsigned char | 1 | 1 | %c、%hhu | uint8_t |
+    | char | 1 | 1 | %c |  |
+    | unsigned short | 2 | 2 | %hu | uint16_t |
+    | short (int) | 2 | 2 | %hi、%hd |  |
+    | unsigned int | 2 | 4 | %u | uint32_t |
+    | int | 2 | 4 | %i、%d |  |
+    | unsigned long | 4 | 8 | %lu | uint64_t |
+    | long (int) | 4 | 8 | %li、%ld |  |
+    | unsigned long long | 8 | 8 | %llu |  |
+    | long long | 4 | 8 | %lli、%lld |  |
+    | float | 4 | 4 | %f、%e、%g |  |
+    | double | 8 | 8 | %lf、%e、%g |  |
+    | long double | 10 | 16 | %lf、%le、%lg |  |
+
+* 複合資料型態 (Compound Data Types)
+  * 結構 (struct)
+    * 產生一種新的資料型態，每個成員變數都配置一段空間
+    * 在 C 和 C++ 中，struct 用來包裝不同型態的資料。
+    * 在 C++ 中，如果要針對內部成員做複雜處理的時候，都使用 class。
+    * 位元欄位 (Bit fields)
+    * 指定、取址、使用結構成員運算子 '.' 跟使用結構指標運算子 '->'
+  * 聯合 (union)
+    * 產生一種新的資料型態，共用一段記憶體空間，所需的記憶體空間大小由最大的成員變數覺得
+    * 指定、取址、使用結構成員運算子 '.' 跟使用結構指標運算子 '->'
+  * 列舉 (enum)
+    * 一組由識別字所代表的整數常數
+    * 除非特別指定，不然都是由0開始，接下來遞增1
+
+## Data Structure ##
+
 * array
-
-* struct
-
-  * 產生一種新的資料型態，每個成員變數都配置一段空間
-  * 在 C 和 C++ 中，struct 用來包裝不同型態的資料。
-  * 在 C++ 中，如果要針對內部成員做複雜處理的時候，都使用 class。
-  * 位元欄位 (Bit fields)
-  * 指定、取址、使用結構成員運算子'.'跟使用結構指標運算子'->'
-
-* union
-
-  * 產生一種新的資料型態，共用一段記憶體空間，所需的記憶體空間大小由最大的成員變數覺得
-  * 指定、取址、使用結構成員運算子'.'跟使用結構指標運算子'->'
-
-* enum
-
-  * 一組由識別字所代表的整數常數
-  * 除非特別指定，不然都是由0開始，接下來遞增1
 
 * Linked List
 
@@ -448,5 +465,3 @@
         return -1; // not found
     }
     ```
-
-* 
