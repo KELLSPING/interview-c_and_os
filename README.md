@@ -6,6 +6,7 @@
 * [C Language](#c-language)
 * [OS](#os)
 * [Company test](#company-test)
+* [Inspirational Quotes](#inspirational-quotes)
 
 ## Resource ##
 
@@ -14,8 +15,13 @@
 
 ## C Language ##
 
-* 
-
 ## OS ##
 
 ## Company test ##
+
+## Inspirational Quotes ##
+
+* "A language that doesn't affect the way you think about programming is not worth knowing." - Alan Perlis
+  * 一個語言如果不改變你的思考方式，就不值得學。
+
+* 學習不要從"基礎的"開始，而是要從"有用的"開始。
