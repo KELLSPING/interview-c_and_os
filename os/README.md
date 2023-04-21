@@ -1,8 +1,16 @@
 # OS #
 
+* Code block in markdown
+
+  ```C
+  // Hi, OS
+  ```
+
 * 什麼是 OS ?
 
   * 確保 Process 可以正確執行，不會讓 Process 跟 Process 之間互相干擾，並透過 kernel mode 跟 user mode 保護硬體，並提供 high level 的 system call 讓使用者不能直接操作硬體，簡化操作，也更加有效率等。
+
+## Table of contents ##
 
 ## Interrupts ##
 
