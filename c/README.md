@@ -3,7 +3,7 @@
 * Code block in markdown
 
     ```C
-    // Hi
+    // Hi, C
     ```
 
 ## Table of contents ##
@@ -519,9 +519,8 @@
     * \*ptr-1 相當於 (*ptr)-1
 
 * 指標變數建立字串 的走訪
-  * while(*ptr != '\0'){}
-  * for(int i = 0; *(ptr + i) != '\0'; i++){}
-
+  * while(*ptr != '\0'){...}
+  * for(int i = 0; *(ptr + i) != '\0'; i++){...}
 
 ## Preprocessor ##
 
@@ -638,6 +637,28 @@
 ## Algorithm ##
 
 * 線性搜尋 (Linear Search)
+
+* 高斯演算法 (Gauss Algorithm)
+
+  ```C
+  // Time Complexity :O(n)
+  int add(int N){
+    int i, ans = 0;
+    for (int i = 0; i < N; i++){
+        ans += i;
+    }
+    printf("ans =%d", ans);
+    return ans;
+  }
+
+  // Time Complexity :O(1)
+  int gaussianAdd(int N){
+    int ans = 0;
+    ans = (1 + N) * N / 2;
+    printf("ans of gaussianAdd() =%d\n", ans);
+    return ans;
+  }
+  ```
 
 * 二元搜尋演算法 (Binary Search Algorithm)
 
