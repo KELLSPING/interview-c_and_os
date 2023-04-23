@@ -46,6 +46,24 @@
   * dynamic
   * static
 
+## Register Architecture ##
+
+* 累加器 (Accumulator)
+  * 1 個 register
+  * 不用指定要加到哪一個 register 中，因為只有一個 register。
+
+* Stack
+  * 後進先出 (LIFO)
+  * 取資料時，操作 top of stack 即可
+
+* 通用暫存器 (General Purpose Register, GPR)
+  * Effective Address (EA) : 資料 可能 main memory 或 register
+
+* Load / Store
+  * a special case of GPR
+  * Load / Store 的 instruction 較 GPR 的 instruction 來得短
+  * 資料一定要在 register，
+
 ## Benchmark ##
 
 ## Pitfall ##

@@ -26,7 +26,8 @@
 
 * 複雜度
   * 時間複雜度 (Time Complexity)
-    * Big O
+    * Big-O
+      * f(n) = Ο(g(n))
     * 排序: 1 (常數) < log n < n < n log n < n^2 < 2^n < n!
       1. 常數時間 (Constant Time) => O(1)，例如：陣列讀取
       2. 對數時間、次線性時間 (Logarithmic Time) => O(log n)，例如：二分搜尋
