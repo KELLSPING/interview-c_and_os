@@ -20,10 +20,11 @@
 
 * 作業系統 - 陳士杰教授
 
+* System Software Introduction - 脆脆, 2022 iThome 鐵人賽
+  * https://ithelp.ithome.com.tw/users/20152298/ironman/5622
+
 * C語言測試 應知道的0x10個基本問題
   * <https://creteken.pixnet.net/blog/post/24524138>
-
-
 
 ## C Language ##
 
@@ -45,3 +46,13 @@
 
 * "Don't reinvent the wheel." - McKinsey
   * 不要重新發明輪子。
+
+* 設計自己身處的環境，有意識的不停跳到更好更上面的層次，不要停在某個區域太久。
+
+* 工程師的三種能力
+  * 駕馭複雜工具的能力 : 解決問題才是工程師的重要意義，瞭解並發明工具只是其次，清楚學習最初的目的，不迷失在技術的學習當中。
+  * 閱讀的能力 : 許多方法根本沒有機會被寫成教學文章，或是在社群中被提問出來，學會看別人的code，不重新造輪子。
+  * 選擇的能力 : 知道自己要什麼，問自己究竟需要什麼。
+
+* "Don’t Let Best be Enemy of Better." - 吳軍
+  * 最好，是更好的敵人。

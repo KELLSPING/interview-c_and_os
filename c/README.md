@@ -26,8 +26,9 @@
 
 * 複雜度
   * 時間複雜度 (Time Complexity)
-    * Big O
-    * 排序: 1 (常數) < log n < n < n log n < n^2 < 2^n < n!
+    * Big-O
+      * f(n) = Ο(g(n))
+    * 排序: n (常數) < log n < n < n log n < n^2 < 2^n < n!
       1. 常數時間 (Constant Time) => O(1)，例如：陣列讀取
       2. 對數時間、次線性時間 (Logarithmic Time) => O(log n)，例如：二分搜尋
       3. 線性時間 (Linear Time) => O(n)，例如：簡易搜尋
@@ -82,7 +83,7 @@
     ```C
     int i;
     i = (1, 2, 3);
-    printf("i  = %d\n", i);
+    printf("i =%d\n", i); // i =3
     ```
 
 * 列印輸出
@@ -111,7 +112,7 @@
     ```C
     #define BIT3 (0x1 << 3)
     static int a;
-    void set_bit3(void) {  a = BIT3; }
+    void set_bit3(void) {  a |= BIT3; }
     void clear_bit3(void) {  a &= ~BIT3; }
     ```
 
