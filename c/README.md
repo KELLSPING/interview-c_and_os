@@ -98,23 +98,31 @@
 
 * 補數運算
 
-    ```C
-    printf("%x\n", 0); // 0
-    printf("%x\n", 1); // 1
-    printf("%x\n", 2); // 2
-    printf("%x\n", -1); // ffffffff
-    printf("%x\n", -2); // fffffffe
-    printf("%x\n", -1 << 1); // fffffffe
-    ```
+  ```C
+  printf("%x\n", 0); // 0
+  printf("%x\n", 1); // 1
+  printf("%x\n", 2); // 2
+  printf("%x\n", -1); // ffffffff
+  printf("%x\n", -2); // fffffffe
+  printf("%x\n", -1 << 1); // fffffffe
+  ```
 
-* 給定一個整型變量a，寫兩段程式碼，第一個設置a的bit 3，第二個清除a 的bit 3
+  ```C
+  unsigned int zero = 0;
 
-    ```C
-    #define BIT3 (0x1 << 3)
-    static int a;
-    void set_bit3(void) {  a |= BIT3; }
-    void clear_bit3(void) {  a &= ~BIT3; }
-    ```
+  /* 1's complement of zero */
+  unsigned int compzero = 0xFFFF; // 在 16 bits 的處理器是正確的，但其他會出錯
+  unsigned int compzero = ~0; // 正確的作法
+  ```
+
+* 給定一個整型變量 a，寫兩段程式碼，第一個設置 a 的 bit 3，第二個清除 a 的 bit 3
+
+  ```C
+  #define BIT3 (0x1 << 3)
+  static int a;
+  void set_bit3(void) {  a |= BIT3; }
+  void clear_bit3(void) {  a &= ~BIT3; }
+  ```
 
 * 基本運算
 
@@ -124,9 +132,10 @@
     unsigned long num_c;
 
     num_c = num_a & (~num_b);
-    num_c = num_c | num_b;
+    printf("num_c=%x\n", num_c); // 1111
 
-    printf("%lx", num_c); // 00001313
+    num_c = num_c | num_b;
+    printf("num_c=%x\n", num_c); // 1313
     ```
 
 * mask 方法做 bitwise 操作
@@ -139,11 +148,25 @@
 
 * 辨別 N 是不是 2 的冪次
 
-    ```C
-    int function(int N){
-        return N>0 && (N&(N-1)) == 0;
-    }
-    ```
+  ```C
+  int isPowerOf2(int N){
+      while (N > 1){
+          if ((N % 2) != 1){
+              N /= 2;
+          } else {
+              break;
+          }
+          return 1;
+      }
+      return 0;
+  }
+  ```
+
+  ```C
+  int isPowerOf2(int N){
+      return N>0 && (N&(N-1)) == 0;
+  }
+  ```
 
 * 給一個 unsigned short, 問換算成16進制後四個值是否相同? 若是回傳1,否則回傳0
 
