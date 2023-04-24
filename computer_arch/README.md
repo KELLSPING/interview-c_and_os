@@ -62,7 +62,7 @@
 * Load / Store
   * a special case of GPR
   * Load / Store 的 instruction 較 GPR 的 instruction 來得短
-  * 資料一定要在 register，
+  * 將資料從 main memory load 至 register 做處理；將資料從 register store 至 main memory 做儲存。
 
 ## Benchmark ##
 
