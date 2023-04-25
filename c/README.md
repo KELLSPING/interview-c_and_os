@@ -80,19 +80,35 @@
 
 * 列印輸出
 
-    ```C
-    int i;
-    i = (1, 2, 3);
-    printf("i =%d\n", i); // i =3
-    ```
+  ```C
+  int i;
+  i = (1, 2, 3);
+  printf("i =%d\n", i); // i =3
+  ```
 
 * 列印輸出
 
-    ```C
-    int first = 50, second = 60, third;
-    third = first /* Will this comment work? */ + second;
-    printf("%d /* And this? */ \n", third);
-    ```
+  ```C
+  int first = 50, second = 60, third;
+  third = first /* Will this comment work? */ + second;
+  printf("%d /* And this? */ \n", third);
+  ```
+
+* 不同資料型態的零值比較
+
+  ```C
+  /* bool */
+  if (flag) {...}
+  if (!flag) {...}
+
+  /* float */
+  #define EPSILON 0.00001 // EPSILON 小於 10的-6次
+  if ((x >= - EPSILON) && (x <= EPSILON)) {...}
+
+  /* pointer */
+  if (p == NULL) {...}
+  if (p != NULL) {...}
+  ```
 
 ## Bitwise ##
 
@@ -281,6 +297,8 @@
 * array
 
 * Linked List
+  * 說明
+    * 是一種線性序列結構，使用指針指向下一個位址，充分利用記憶體空間。
   * 若存放串列元素的記憶體是循序的，則此串列稱為循序串列 (sequential list)；若存放串列元素的記憶體並不連續，而必須以指標將他們鏈結起來，則稱為鏈結串列 (linked list)。
   * 終端節點已是最後一個節點，所以將第二個成員，亦即指標設成 NULL。
   * 常用的操作
@@ -297,6 +315,8 @@
     * 釋放 free
 
 * Stack
+  * 說明
+    * 堆疊是一種
 
 * Queue
 
