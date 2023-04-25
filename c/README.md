@@ -38,12 +38,14 @@
 
 * 傳值呼叫、傳址呼叫、參考呼叫
   * 傳值呼叫 (call by value)
+    * 複製記憶體。副程式與主程式的變數是存放在個別的記憶體中。
 
     ```C
     int callByValue(int a, int b){...}
     ```
 
   * 傳址呼叫 (call by address, call by pointer)
+    * 共用記憶體。副程式與主程式的變數是使用同一個記憶體。
 
     ```C
     int callByAddress(int *a, int *b){...}
