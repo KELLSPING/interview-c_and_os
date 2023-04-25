@@ -73,14 +73,26 @@
 * 說明
   * 已經載入記憶體且隨時會被執行的 program。
   * 是 thread 的容器。
+  * 每個 process 有獨立的資源空間 (如記憶體資源、系統資源)，因此不同 process 之間，資源不共享。
 
 * 在分時系統 (time-sharing) 環境，process 稱為使用者程式 (user programs) 或任務 (tasks)。
+
+* 生命週期 (life-cycle)
+  * 創建 (new) : 初始狀態，分配及建立 PCB 和其他資源。
+  * 就緒 (ready) : 按照 CPU Scheduling 等待資源。。
+  * 工作 (running) : 執行應用程式中的指令。
+  * 等待 (waiting) : 因為事件或 I/O 速度的差異導致。
+  * 終止 (terminated) : 完成執行、被迫結束或遇到錯誤時
+
+* 行程控制段 (Process Control Block, PCB)
+  * 說明
+    * 主要表示行程狀態。
 
 ## 執行緒、線程 (Thread) ##
 
 * 說明
   * 是基本執行單位，每一個 Thread 負責某一項功能。
-  * 同一個 process 中的 thread，將共享 process 的資源。
+  * 同一個 process 中的 thread，有自己的 stack 和 register，其他資源是共享的。
 
 * 種類
   * 單執行緒 (single thread)
