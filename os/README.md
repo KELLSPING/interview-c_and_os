@@ -72,6 +72,7 @@
 
 * 說明
   * 已經載入記憶體且隨時會被執行的 program。
+  * 是 OS 分配資源的最小單位。
   * 是 thread 的容器。
   * 每個 process 有獨立的資源空間 (如記憶體資源、系統資源)，因此不同 process 之間，資源不共享。
 
@@ -91,8 +92,9 @@
 ## 執行緒、線程 (Thread) ##
 
 * 說明
-  * 是基本執行單位，每一個 Thread 負責某一項功能。
-  * 同一個 process 中的 thread，有自己的 stack 和 register，其他資源是共享的。
+  * 每一個 Thread 負責某一項功能。
+  * 是 OS 能夠進行運算排程(操作)的最小單位。
+  * 同一個 process 中的多個 thread，會有自己的 stack 和 register，其他資源是共享的。
 
 * 種類
   * 單執行緒 (single thread)
@@ -145,10 +147,10 @@
   * Mutex 只能由上鎖的 thread 解鎖
   * 只能讓一個 thread 進入 critical section
 
-## 號誌 (Semophore) ##
+## 號誌 (Semaphore) ##
 
 * 說明
-  * Semophore 原本 thread 上的鎖，可以由自己或其他的 thread 解開。
+  * Semaphore 原本 thread 上的鎖，可以由自己或其他的 thread 解開。
   * 可以設定要讓幾個 thread 進入 critical section，當設定為 1 時，變向的達到互斥鎖的功用。
 
 ## Pipeline ##

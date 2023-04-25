@@ -275,7 +275,7 @@
     | double | 8 | 8 | %lf、%e、%g |  |
     | long double | 12 | 16 | %lf、%le、%lg |  |
     | size_t | 4 | 8 |  |  |
-    | pointer | 4 | 8 |  |  |
+    | pointer | 4 | 8 | %p |  |
     | string | 4 | 8 | %s |  |
 
 * 複合資料型態 (Compound Data Types)
