@@ -168,7 +168,6 @@
   int isPowerOf2(int N){
       while (N > 1){
           if ((N%2) == 0) {
-              printf("N =%d\n", N);
               N /= 2;
               if (N == 1) {
                   return 1;
