@@ -23,17 +23,19 @@
 ## 作業系統 (Operating System, OS) ##
 
 * 說明
-  * 確保 Process 可以正確執行，不會讓 Process 跟 Process 之間互相干擾，並透過 kernel mode 跟 user mode 保護硬體，並提供 high level 的 system call 讓使用者不能直接操作硬體，簡化操作，也更加有效率等。
+  * 確保 process 可以正確執行，不會讓 process 跟 process 之間互相干擾。
+  * 透過 kernel mode 跟 user mode 來保護硬體。
+  * 提供 high level 的 system call 讓使用者不能直接操作硬體，簡化操作，也更加有效率等。
 
 ## 基本輸入輸出系統 (Basic Input/Output System, BIOS) ##
 
 * 說明
-  * 是一段由 CPU 執行的 code，讓 CPU 可以知道怎麼初始化硬體、找到可以開機的 storage 位置、把 bootloader 載入 RAM，接著跳到 bootloader 的入口點開始執行。
+  * 是一段由 CPU 執行的 code，讓 CPU 可以知道怎麼初始化硬體、找到可以開機的儲存位置、把 bootloader 載入 RAM，接著跳到 bootloader 的入口點開始執行。
 
 ## 啟動載入程式 (Bootstrap Loader, bootloader) ##
 
 * 說明
-  * 讓 CPU 知道怎麼將 OS kernel 載入 RAM，並且執行 OS kernel 的初始化
+  * 讓 CPU 知道怎麼將 OS kernel 載入 RAM，並且執行 OS kernel 的初始化。
 
 * 在 Linux 中，是使用 GNU GRUB，是一個來自 GNU 專案的啟動載入程式。GNU GRUB 的前身為使用於類 Unix 系統中的 Grand Unified Bootloader。
 
@@ -93,30 +95,57 @@
 ## 死結、死鎖 (Deadlock) ##
 
 * 說明
-  * 當兩個以上的運算單元，都在等待他方先釋放資源。
+  * 當兩個以上的 process，都在等待他方先釋放資源。 (兩人互不相讓，都想要對方先讓開)
+
+* 必須滿足條件
+  * Mutual exclusion : 一個資源一次只能被一個 process 所使用。
+  * Hold and Wait : process 取得一個資源之後等待其他的資源。
+  * No preemption : 資源只能由process自己釋放，不能由其他方式釋放。
+  * Circular wait : 每個 process 都握有另一個 process 請求的資源，導致每一個 process 都在等待另一個process釋放資源。
 
 ## 活結 (Livelock) ##
 
+* 說明
+  * process 彼此釋放資源又同時占用對方釋放的資源。 (兩人互相禮讓，卻又恰巧不停地站到同一側)
+
+## 並行 (Concurrency) ##
+
+* 說明
+  * 一個 CPU 會去做多件事，但是同一個時間點之內只會做一件事。
+
+## 並行 (Parallelism) ##
+
+* 說明
+  * 多個 CPU 在同一個時間點內會去做多件事。
+
+## 競爭條件 (Race Condition) ##
+
+* 說明
+  * 兩個 thread 對 process 中共享的記憶體進行不同步的訪問。
+
+* 又稱為競爭危害（race hazard）
+* 若是某個記憶體內的資料，會同時被兩個不同的 thread 進行存取，可以先檢查這兩個 thread 寫入同份資料時是否存在 "happens-before relation"，若不存在此關係，便存在 race condition。
+
 ## 互斥鎖 (Mutual exclusion, Mutex) ##
 
-* 一種用於多執行緒編程中，防止兩條執行緒同時對同一公共資源（比如全域變數）進行讀寫的機制。
+* 說明
+  * 為了防止 concurrency 狀況下出現 race condition
+  * Mutex 只能由上鎖的 thread 解鎖
+  * 只能讓一個 thread 進入 critical section
 
-## Race Condition ##
+## 號誌 (Semophore) ##
 
-* 競爭條件（race condition）又稱為競爭危害（race hazard）
-* 若是某個記憶體內的資料，會同時被兩個不同的 thread 進行存取，可以先檢查這兩個 thread 寫入同份資料時是否存在 "happens-before relation"，若不存在此關係，便存在 race condition。
+* 說明
+  * Semophore 原本 thread 上的鎖，可以由自己或其他的 thread 解開。
+  * 可以設定要讓幾個 thread 進入 critical section，當設定為 1 時，變向的達到互斥鎖的功用。
 
 ## Pipeline ##
 
-* 什麼是 pipelin ?
+* 說明
   * 是為了讓計算機和其它數位電子裝置能夠加速指令的通過速度 (單位時間內被執行的指令數量) 而設計的技術。
 
 ## Socket ##
 
 * 由一個 IP 位址和一個埠號碼 (port number) 所組成。
-
-## Mutex ##
-
-## Semophore ##
 
 ## Paging ##
