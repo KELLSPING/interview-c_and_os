@@ -305,22 +305,25 @@
     * 建立 create
     * 列印 print、走訪 traverse
     * 插入 insert
-      1. 插入至第一個
-      2. 插入至串列中
     * 刪除 delete
-      1. 串列為空，不進行刪除
-      2. 刪除串列第一個
-      3. 刪除串列中任意一個
     * 搜尋 search
     * 釋放 free
 
-* Stack
+* 堆疊 Stack
   * 說明
-    * 堆疊是一種
+    * 後進先出 (Last In First Out, LIFO)
+    * 堆疊頂部 (top), 堆疊底部 (bottom), 加入資料 (push), 移除資料 (pop)
 
-* Queue
+* 佇列、隊列 Queue
+  * 說明
+    * 先進先出 (First-In-First-Out, FIFO)
+    * 佇列首 (front), 佇列尾 (rear), 加入資料 (enqueue), 移除資料 (dequeue)
+  * 種類
+    * 環形佇列
+    * 雙向佇列
+    * 優先佇列
 
-* Heap
+* 堆積 Heap
 
 * Tree
 
