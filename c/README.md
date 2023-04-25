@@ -1,10 +1,8 @@
 # C Language #
 
-* Code block in markdown
-
-    ```C
-    // Hi, C
-    ```
+```C
+/* Hi, this is C Language page. */
+```
 
 ## Table of contents ##
 

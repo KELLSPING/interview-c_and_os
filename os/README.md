@@ -1,10 +1,13 @@
 # OS #
 
-* Code block in markdown
+```C
+/* Hi, this is OS page. */
+```
 
-  ```C
-  // Hi, OS
-  ```
+<div style="text-align:center">
+    <img src="../img/software_arch.png" alt= "software_arch" width="60%">
+    <p>Software Architecture</p>
+</div>
 
 * Linux 開機流程
   * 步驟
@@ -36,6 +39,9 @@
 
 ## 中斷 (Interrupts) ##
 
+* 說明
+  * 指 CPU 接收到來自硬體或軟體的訊號須優先處理，因此暫停當前執行的程式，轉而執行突發的事件，執行結束後，再繼續執行原本尚未完成的程式。
+
 * 種類
   * External Interrupt (外部中斷)
     * CPU 外的週邊元件所引起的。 (I/O Complete Interrupt, I/O Device error)
@@ -55,13 +61,45 @@
   5. ISR 執行
   6. ISR 執行完成，回到原先中斷前的執行
 
-## Process ##
+## 程式 (Program) ##
 
-## Thread ##
+* 說明
+  * 尚未載入記憶體、在等待被執行的 code。
 
-* 單執行緒 (single thread) 和多執行緒 (multi thread)
+## 行程、進程、程序 (Process) ##
 
-## Deadlock ##
+* 說明
+  * 已經載入記憶體且隨時會被執行的 program。
+  * 是 thread 的容器。
+
+* 在分時系統 (time-sharing) 環境，process 稱為使用者程式 (user programs) 或任務 (tasks)。
+
+## 執行緒、線程 (Thread) ##
+
+* 說明
+  * 是基本執行單位，每一個 Thread 負責某一項功能。
+  * 同一個 process 中的 thread，將共享 process 的資源。
+
+* 種類
+  * 單執行緒 (single thread)
+  * 多執行緒 (multi thread)
+
+* 狀態
+  * 產生 (spawn)
+  * 阻塞 (block)
+  * 非阻塞 (unblock)
+  * 結束 (finish)
+
+## 死結、死鎖 (Deadlock) ##
+
+* 說明
+  * 當兩個以上的運算單元，都在等待他方先釋放資源。
+
+## 活結 (Livelock) ##
+
+## 互斥鎖 (Mutual exclusion, Mutex) ##
+
+* 一種用於多執行緒編程中，防止兩條執行緒同時對同一公共資源（比如全域變數）進行讀寫的機制。
 
 ## Race Condition ##
 

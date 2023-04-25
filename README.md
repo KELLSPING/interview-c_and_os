@@ -1,5 +1,9 @@
 # Interview - C and OS #
 
+```C
+/* Hi, this is MAIN page. */
+```
+
 ## Table of contents ##
 
 * [Resource](#resource)

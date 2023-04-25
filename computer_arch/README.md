@@ -1,5 +1,9 @@
 # Computer Architecture #
 
+```C
+/* Hi, this is Computer Architecture page. */
+```
+
 * Computer Architecture = ISA + Machine Organization
   * 計算機系統結構、電腦系統架構 (Computer Architecture)
   * 指令集架構 (Instruction Set Architecture, ISA)
