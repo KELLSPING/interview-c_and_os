@@ -266,19 +266,17 @@
     | --- | --- | --- | --- | --- |
     |  | Size(bytes) | Size(bytes) |  | Typedef |
     | _Bool | 1 | 1 | %i、%d |  |
-    | unsigned char | 1 | 1 | %c、%hhu | uint8_t |
-    | char | 1 | 1 | %c |  |
-    | unsigned short | 2 | 2 | %hu | uint16_t |
-    | short (int) | 2 | 2 | %hi、%hd |  |
-    | unsigned int | 2 | 4 | %u | uint32_t |
-    | int | 2 | 4 | %i、%d |  |
-    | unsigned long | 4 | 8 | %lu | uint64_t |
-    | long (int) | 4 | 8 | %li、%ld |  |
-    | unsigned long long | 8 | 8 | %llu |  |
+    | char | 1 | 1 | %c | uint8_t |
+    | short (int) | 2 | 2 | %hi、%hd | uint16_t |
+    | int | 2 | 4 | %i、%d | uint32_t |
+    | long (int) | 4 | 8 | %li、%ld | uint64_t |
     | long long | 4 | 8 | %lli、%lld |  |
     | float | 4 | 4 | %f、%e、%g |  |
     | double | 8 | 8 | %lf、%e、%g |  |
-    | long double | 10 | 16 | %lf、%le、%lg |  |
+    | long double | 12 | 16 | %lf、%le、%lg |  |
+    | size_t | 4 | 8 |  |  |
+    | pointer | 4 | 8 |  |  |
+    | string | 4 | 8 | %s |  |
 
 * 複合資料型態 (Compound Data Types)
   * 結構 (struct)
@@ -568,8 +566,63 @@
     * \*ptr-1 相當於 (*ptr)-1
 
 * 指標變數建立字串 的走訪
-  * while(*ptr != '\0'){...}
-  * for(int i = 0; *(ptr + i) != '\0'; i++){...}
+
+  ```C
+  while(*ptr != '\0'){ // while 走訪
+    ...
+  }
+
+  for(int i = 0; *(ptr + i) != '\0'; i++){ // for 走訪
+    ...
+  }
+  ```
+
+* 指標函數列印數值
+
+  ```C
+  int B = 2;
+  void func(int *p){p = &B;}
+  int main(){
+      int A = 1, C = 3;
+      int *ptrA = &A;
+      func(ptrA);
+      printf("%d\n", *ptrA); // 1
+      return 0;
+  }
+  ```
+
+    ```C
+  int B = 2;
+  void func(int *p){p = &B;}
+  int main(){
+      int A = 1, C = 3;
+      int *ptrA = &A;
+      func(ptrA);
+      printf("%d\n", *ptrA); // 2
+      return 0;
+  }
+  ```
+
+* 透過函式記憶體配置
+
+  ```C
+  #include <stdio.h>
+  #include <stdlib.h>
+  void getMemory(char** s)
+  {
+      *s = (char*)malloc(sizeof(char));
+      printf("s = %p\n", s);
+      printf("*s = %p\n", *s);
+  }
+  int main()
+  {
+      char* ch = NULL;
+      getMemory(&ch);
+      printf("&ch = %p\n", &ch);
+      printf("ch = %p\n", ch);
+      return 0;
+  }
+  ```
 
 ## Preprocessor ##
 
