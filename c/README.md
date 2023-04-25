@@ -80,41 +80,65 @@
 
 * 列印輸出
 
-    ```C
-    int i;
-    i = (1, 2, 3);
-    printf("i =%d\n", i); // i =3
-    ```
+  ```C
+  int i;
+  i = (1, 2, 3);
+  printf("i =%d\n", i); // i =3
+  ```
 
 * 列印輸出
 
-    ```C
-    int first = 50, second = 60, third;
-    third = first /* Will this comment work? */ + second;
-    printf("%d /* And this? */ \n", third);
-    ```
+  ```C
+  int first = 50, second = 60, third;
+  third = first /* Will this comment work? */ + second;
+  printf("%d /* And this? */ \n", third);
+  ```
+
+* 不同資料型態的零值比較
+
+  ```C
+  /* bool */
+  if (flag) {...}
+  if (!flag) {...}
+
+  /* float */
+  #define EPSILON 0.00001 // EPSILON 小於 10的-6次
+  if ((x >= - EPSILON) && (x <= EPSILON)) {...}
+
+  /* pointer */
+  if (p == NULL) {...}
+  if (p != NULL) {...}
+  ```
 
 ## Bitwise ##
 
 * 補數運算
 
-    ```C
-    printf("%x\n", 0); // 0
-    printf("%x\n", 1); // 1
-    printf("%x\n", 2); // 2
-    printf("%x\n", -1); // ffffffff
-    printf("%x\n", -2); // fffffffe
-    printf("%x\n", -1 << 1); // fffffffe
-    ```
+  ```C
+  printf("%x\n", 0); // 0
+  printf("%x\n", 1); // 1
+  printf("%x\n", 2); // 2
+  printf("%x\n", -1); // ffffffff
+  printf("%x\n", -2); // fffffffe
+  printf("%x\n", -1 << 1); // fffffffe
+  ```
 
-* 給定一個整型變量a，寫兩段程式碼，第一個設置a的bit 3，第二個清除a 的bit 3
+  ```C
+  unsigned int zero = 0;
 
-    ```C
-    #define BIT3 (0x1 << 3)
-    static int a;
-    void set_bit3(void) {  a |= BIT3; }
-    void clear_bit3(void) {  a &= ~BIT3; }
-    ```
+  /* 1's complement of zero */
+  unsigned int compzero = 0xFFFF; // 在 16 bits 的處理器是正確的，但其他會出錯
+  unsigned int compzero = ~0; // 正確的作法
+  ```
+
+* 給定一個整型變量 a，寫兩段程式碼，第一個設置 a 的 bit 3，第二個清除 a 的 bit 3
+
+  ```C
+  #define BIT3 (0x1 << 3)
+  static int a;
+  void set_bit3(void) {  a |= BIT3; }
+  void clear_bit3(void) {  a &= ~BIT3; }
+  ```
 
 * 基本運算
 
@@ -124,9 +148,10 @@
     unsigned long num_c;
 
     num_c = num_a & (~num_b);
-    num_c = num_c | num_b;
+    printf("num_c=%x\n", num_c); // 1111
 
-    printf("%lx", num_c); // 00001313
+    num_c = num_c | num_b;
+    printf("num_c=%x\n", num_c); // 1313
     ```
 
 * mask 方法做 bitwise 操作
@@ -139,11 +164,25 @@
 
 * 辨別 N 是不是 2 的冪次
 
-    ```C
-    int function(int N){
-        return N>0 && (N&(N-1)) == 0;
-    }
-    ```
+  ```C
+  int isPowerOf2(int N){
+      while (N > 1){
+          if ((N % 2) != 1){
+              N /= 2;
+          } else {
+              break;
+          }
+          return 1;
+      }
+      return 0;
+  }
+  ```
+
+  ```C
+  int isPowerOf2(int N){
+      return N>0 && (N&(N-1)) == 0;
+  }
+  ```
 
 * 給一個 unsigned short, 問換算成16進制後四個值是否相同? 若是回傳1,否則回傳0
 
@@ -258,26 +297,33 @@
 * array
 
 * Linked List
+  * 說明
+    * 是一種線性序列結構，使用指針指向下一個位址，充分利用記憶體空間。
   * 若存放串列元素的記憶體是循序的，則此串列稱為循序串列 (sequential list)；若存放串列元素的記憶體並不連續，而必須以指標將他們鏈結起來，則稱為鏈結串列 (linked list)。
   * 終端節點已是最後一個節點，所以將第二個成員，亦即指標設成 NULL。
   * 常用的操作
     * 建立 create
     * 列印 print、走訪 traverse
     * 插入 insert
-      1. 插入至第一個
-      2. 插入至串列中
     * 刪除 delete
-      1. 串列為空，不進行刪除
-      2. 刪除串列第一個
-      3. 刪除串列中任意一個
     * 搜尋 search
     * 釋放 free
 
-* Stack
+* 堆疊 Stack
+  * 說明
+    * 後進先出 (Last In First Out, LIFO)
+    * 堆疊頂部 (top), 堆疊底部 (bottom), 加入資料 (push), 移除資料 (pop)
 
-* Queue
+* 佇列、隊列 Queue
+  * 說明
+    * 先進先出 (First-In-First-Out, FIFO)
+    * 佇列首 (front), 佇列尾 (rear), 加入資料 (enqueue), 移除資料 (dequeue)
+  * 種類
+    * 環形佇列
+    * 雙向佇列
+    * 優先佇列
 
-* Heap
+* 堆積 Heap
 
 * Tree
 

@@ -6,13 +6,35 @@
   // Hi, OS
   ```
 
-* 什麼是 OS ?
-
-  * 確保 Process 可以正確執行，不會讓 Process 跟 Process 之間互相干擾，並透過 kernel mode 跟 user mode 保護硬體，並提供 high level 的 system call 讓使用者不能直接操作硬體，簡化操作，也更加有效率等。
+* Linux 開機流程
+  * 步驟
+    * BIOS -> MBR -> GRUB -> Kernel -> Init -> Runlevel Scripts
+  * 名詞
+    * 基本輸入輸出系統 (Basic Input/Output System, BIOS)
+    * 主開機紀錄、主引導磁區 (Master Boot Record, MBR)
+    * 啟動載入程式 (GNU GRUB, GRUB)
+    * 核心、內核 (Kernel)
 
 ## Table of contents ##
 
-## Interrupts ##
+## 作業系統 (Operating System, OS) ##
+
+* 說明
+  * 確保 Process 可以正確執行，不會讓 Process 跟 Process 之間互相干擾，並透過 kernel mode 跟 user mode 保護硬體，並提供 high level 的 system call 讓使用者不能直接操作硬體，簡化操作，也更加有效率等。
+
+## 基本輸入輸出系統 (Basic Input/Output System, BIOS) ##
+
+* 說明
+  * 是一段由 CPU 執行的 code，讓 CPU 可以知道怎麼初始化硬體、找到可以開機的 storage 位置、把 bootloader 載入 RAM，接著跳到 bootloader 的入口點開始執行。
+
+## 啟動載入程式 (Bootstrap Loader, bootloader) ##
+
+* 說明
+  * 讓 CPU 知道怎麼將 OS kernel 載入 RAM，並且執行 OS kernel 的初始化
+
+* 在 Linux 中，是使用 GNU GRUB，是一個來自 GNU 專案的啟動載入程式。GNU GRUB 的前身為使用於類 Unix 系統中的 Grand Unified Bootloader。
+
+## 中斷 (Interrupts) ##
 
 * 種類
   * External Interrupt (外部中斷)
@@ -32,8 +54,6 @@
   4. 取得 ISR 的起始位址
   5. ISR 執行
   6. ISR 執行完成，回到原先中斷前的執行
-
-* Interrupt I/O (中斷式 I/O)
 
 ## Process ##
 

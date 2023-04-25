@@ -21,7 +21,7 @@
 * 作業系統 - 陳士杰教授
 
 * System Software Introduction - 脆脆, 2022 iThome 鐵人賽
-  * https://ithelp.ithome.com.tw/users/20152298/ironman/5622
+  * <https://ithelp.ithome.com.tw/users/20152298/ironman/5622>
 
 * C語言測試 應知道的0x10個基本問題
   * <https://creteken.pixnet.net/blog/post/24524138>
