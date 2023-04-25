@@ -72,6 +72,7 @@
 
 * 說明
   * 已經載入記憶體且隨時會被執行的 program。
+  * 是 OS 分配資源的最小單位。
   * 是 thread 的容器。
   * 每個 process 有獨立的資源空間 (如記憶體資源、系統資源)，因此不同 process 之間，資源不共享。
 
@@ -91,8 +92,9 @@
 ## 執行緒、線程 (Thread) ##
 
 * 說明
-  * 是基本執行單位，每一個 Thread 負責某一項功能。
-  * 同一個 process 中的 thread，有自己的 stack 和 register，其他資源是共享的。
+  * 每一個 Thread 負責某一項功能。
+  * 是 OS 能夠進行排程運算(操作)的最小單位。
+  * 同一個 process 中的多個 thread，會有自己的 stack 和 register，其他資源是共享的。
 
 * 種類
   * 單執行緒 (single thread)
@@ -120,23 +122,25 @@
 * 說明
   * process 彼此釋放資源又同時占用對方釋放的資源。 (兩人互相禮讓，卻又恰巧不停地站到同一側)
 
-## 並行 (Concurrency) ##
+## 並發、併發 (Concurrency) ##
 
 * 說明
   * 一個 CPU 會去做多件事，但是同一個時間點之內只會做一件事。
 
-## 並行 (Parallelism) ##
+## 並行、平行 (Parallelism) ##
 
 * 說明
-  * 多個 CPU 在同一個時間點內會去做多件事。
+  * 多個 CPU 在同一個時間點內分別去做多件事。
 
 ## 競爭條件 (Race Condition) ##
 
 * 說明
-  * 兩個 thread 對 process 中共享的記憶體進行不同步的訪問。
+  * 在多個 thread 的情況下，對 process 中共享的記憶體進行不同步的訪問。
 
 * 又稱為競爭危害（race hazard）
 * 若是某個記憶體內的資料，會同時被兩個不同的 thread 進行存取，可以先檢查這兩個 thread 寫入同份資料時是否存在 "happens-before relation"，若不存在此關係，便存在 race condition。
+
+## 自旋鎖 (Spinlock) ##
 
 ## 互斥鎖 (Mutual exclusion, Mutex) ##
 
@@ -145,10 +149,10 @@
   * Mutex 只能由上鎖的 thread 解鎖
   * 只能讓一個 thread 進入 critical section
 
-## 號誌 (Semophore) ##
+## 號誌 (Semaphore) ##
 
 * 說明
-  * Semophore 原本 thread 上的鎖，可以由自己或其他的 thread 解開。
+  * Semaphore 原本 thread 上的鎖，可以由自己或其他的 thread 解開。
   * 可以設定要讓幾個 thread 進入 critical section，當設定為 1 時，變向的達到互斥鎖的功用。
 
 ## Pipeline ##
