@@ -93,7 +93,7 @@
 
 * 說明
   * 每一個 Thread 負責某一項功能。
-  * 是 OS 能夠進行運算排程(操作)的最小單位。
+  * 是 OS 能夠進行排程運算(操作)的最小單位。
   * 同一個 process 中的多個 thread，會有自己的 stack 和 register，其他資源是共享的。
 
 * 種類
@@ -122,23 +122,25 @@
 * 說明
   * process 彼此釋放資源又同時占用對方釋放的資源。 (兩人互相禮讓，卻又恰巧不停地站到同一側)
 
-## 並行 (Concurrency) ##
+## 並發、併發 (Concurrency) ##
 
 * 說明
   * 一個 CPU 會去做多件事，但是同一個時間點之內只會做一件事。
 
-## 並行 (Parallelism) ##
+## 並行、平行 (Parallelism) ##
 
 * 說明
-  * 多個 CPU 在同一個時間點內會去做多件事。
+  * 多個 CPU 在同一個時間點內分別去做多件事。
 
 ## 競爭條件 (Race Condition) ##
 
 * 說明
-  * 兩個 thread 對 process 中共享的記憶體進行不同步的訪問。
+  * 在多個 thread 的情況下，對 process 中共享的記憶體進行不同步的訪問。
 
 * 又稱為競爭危害（race hazard）
 * 若是某個記憶體內的資料，會同時被兩個不同的 thread 進行存取，可以先檢查這兩個 thread 寫入同份資料時是否存在 "happens-before relation"，若不存在此關係，便存在 race condition。
+
+## 自旋鎖 (Spinlock) ##
 
 ## 互斥鎖 (Mutual exclusion, Mutex) ##
 
