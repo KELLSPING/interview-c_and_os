@@ -460,15 +460,6 @@
     2. 使編譯器保護那些不希望被改變的參數
     3. 給優化器一些附加的資訊
 
-    ```C
-    const int a; // a 是一個常數型整數 (const int)
-    int const a; // a 是一個 const int
-    const int *a; // a 是一個 pointer，指向 const int 變數
-    int const *a; // a 是一個 pointer，指向 const int 變數
-    int * const a; // a 是一個常數型指標 (const pointer)，指向 int 變數
-    int const * a const; // a 是一個 const pointer，指向 const int 變數
-    ```
-
 * 關鍵字 volatile 有什麼含意？
 
 * 變數範圍和生命周期
@@ -523,6 +514,15 @@
   ```
 
 * 用變數 a 給出下面的定義
+
+  ```C
+  const int a; // a 是一個常數型整數 (const int)
+  int const a; // a 是一個 const int
+  const int *a; // a 是一個 pointer，指向 const int 變數
+  int const *a; // a 是一個 pointer，指向 const int 變數
+  int * const a; // a 是一個常數型指標 (const pointer)，指向 int 變數
+  int const * a const; // a 是一個 const pointer，指向 const int 變數
+  ```
 
   ```C
   int a; // 一個整型數
