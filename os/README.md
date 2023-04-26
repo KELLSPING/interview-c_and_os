@@ -23,6 +23,7 @@
 ## 作業系統 (Operating System, OS) ##
 
 * 說明
+  * 一組主管並控制電腦操作、運用和執行軟硬體資源和提供服務給使用者的系統軟體程式。
   * 確保 process 可以正確執行，不會讓 process 跟 process 之間互相干擾。
   * 透過 kernel mode 跟 user mode 來保護硬體。
   * 提供 high level 的 system call 讓使用者不能直接操作硬體，簡化操作，也更加有效率等。
