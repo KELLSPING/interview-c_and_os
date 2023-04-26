@@ -28,3 +28,11 @@
         return 0xFFFF;
     }
     ```
+
+## CC2541 OSAL ##
+
+* 作業系統層抽象層 (operating system abstraction layer, OSAL)
+
+* 一種支援多任務運行的系統資源分配機制。但還不能算是真正的操作系統。
+
+## RTOS 與 Linux 的區別 ##
