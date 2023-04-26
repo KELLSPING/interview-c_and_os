@@ -4,7 +4,6 @@
 /* Hi, this is Interview Test page. */
 ```
 
-
 ## Innolux ##
 
 * 位元運算
