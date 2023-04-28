@@ -4,21 +4,25 @@
 /* Hi, this is MAIN page. */
 ```
 
-## Table of contents ##
-
-* [Resource](#resource)
-* [C Language](#c-language)
-* [OS](#os)
-* [Company test](#company-test)
-* [Inspirational Quotes](#inspirational-quotes)
-
 ## Resource ##
 
 * C 語言教學手冊第四版 - 洪維恩
 
+* 微處理機 -  鄭雲謙教授
+
+<div style="text-align:center">
+    <img src="img/course_microprocessor.png" alt="course_microprocessor" width="80%">
+    <p>Course - Microprocessor</p>
+</div>
+
 * 作業系統 Operating System Concepts 10/e - Abraham Silberschatz , Peter Raer Galvin , Greg Gagne 著 吳庭育、駱詩軒 譯
 
 * 計算機結構 - 黃婷婷教授
+
+<div style="text-align:center">
+    <img src="img/computer_architecture.jpg" alt= “computer_architecture” width="80%">
+    <p>Computer Architecture</p>
+</div>
 
 * 作業系統 - 周志遠教授
 
@@ -30,13 +34,13 @@
 * C語言測試 應知道的0x10個基本問題
   * <https://creteken.pixnet.net/blog/post/24524138>
 
-## C Language ##
+* Embedded Engineer RoadMap 2022 - Alok Mishra
+  * <https://www.linkedin.com/posts/nazirahmed-tolagi-388b2822_embedded-engineer-roadmap-2022-activity-6963680658061737984-_MzE/>
 
-## Computer Architecture ##
-
-## OS ##
-
-## Company test ##
+<div style="text-align:center">
+    <img src="img/embedded_engineer_roadmap_2022.png" alt="embedded_engineer_roadmap_2022" width="90%">
+    <p>Embedded Engineer RoadMap 2022</p>
+</div>
 
 ## Inspirational Quotes ##
 
