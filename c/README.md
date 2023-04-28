@@ -66,6 +66,8 @@
     5. [Build] 連結器 (Linker): 將多個目的檔或靜態函式庫 (Static library, .a, .lib) 合併成一個可執行檔 (.exe, .out) 或函式庫的工具。
     6. [Run] 載入器 (Loader): 是作業系統的一部份，用於把程式和動態函式庫 (Shared library, .so, .dll) 的指令載入到記憶體 (RAM) 中等待 CPU 執行，當載入完成之後，作業系統會將控制權交給載入的程式碼，讓它開始運作。
     7. [Run] CPU: 對載入的指令進行運算或儲存等操作。
+  * .a 檔與 .exe 檔的差別
+    * .exe 檔中，有包含 main () 的 source code 。
 
 * 偵錯 (Debug)
   * 語法錯誤 (Syntax error): 不符合語言的規定，將編譯後所指出的錯誤修正，再重新編譯即可。

@@ -6,17 +6,6 @@
 
 ## Resource ##
 
-* C 語言教學手冊第四版 - 洪維恩
-
-* 微處理機 -  鄭雲謙教授
-
-<div style="text-align:center">
-    <img src="img/course_microprocessor.png" alt="course_microprocessor" width="80%">
-    <p>Course - Microprocessor</p>
-</div>
-
-* 作業系統 Operating System Concepts 10/e - Abraham Silberschatz , Peter Raer Galvin , Greg Gagne 著 吳庭育、駱詩軒 譯
-
 * 計算機結構 - 黃婷婷教授
 
 <div style="text-align:center">
@@ -27,6 +16,29 @@
 * 作業系統 - 周志遠教授
 
 * 作業系統 - 陳士杰教授
+
+* 嵌入式作業系統 - 黃育綸教授
+
+<div style="text-align:center">
+    <img src="img/rtos_overview.png" alt="rtos_overview2" width="80%">
+    <p>RTOS Architecture</p>
+</div>
+
+<div style="text-align:center">
+    <img src="img/embedded_os_course_map.png" alt= embedded_os_course_map width="80%">
+    <p>Embedded OS Course Map</p>
+</div>
+
+* 微處理機 -  鄭雲謙教授
+
+<div style="text-align:center">
+    <img src="img/course_microprocessor.png" alt="course_microprocessor" width="90%">
+    <p>Related course of Microprocessor</p>
+</div>
+
+* 作業系統 Operating System Concepts 10/e - Abraham Silberschatz , Peter Raer Galvin , Greg Gagne 著 吳庭育、駱詩軒 譯
+
+* C 語言教學手冊第四版 - 洪維恩
 
 * System Software Introduction - 脆脆, 2022 iThome 鐵人賽
   * <https://ithelp.ithome.com.tw/users/20152298/ironman/5622>
