@@ -4,6 +4,12 @@
 /* Hi, this is Interview Test page. */
 ```
 
+## ASolid ##
+
+* Bitwise
+
+* data structure
+
 ## Innolux ##
 
 * 位元運算
@@ -28,6 +34,14 @@
         return 0xFFFF;
     }
     ```
+
+## Gemtek ##
+
+* 指標操作
+* bitwise (AND/OR)
+* 字串做反向
+* Linux
+* Network
 
 ## CC2541 OSAL ##
 
