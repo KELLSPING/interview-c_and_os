@@ -170,3 +170,42 @@
 * 由一個 IP 位址和一個埠號碼 (port number) 所組成。
 
 ## Paging ##
+
+## 記憶體配置 (Memory Allocation) ##
+
+* 程式碼 (text)
+  * 可稱為文字區段 (text segment) 或程式碼區段 (code segment)。
+  * 存放的是可執行的 CPU 指令 (instructions) 。
+  * text 通常位於  heap 或 stack 之後，避免 heap 或 stack 溢位而覆寫 CPU 指令。
+  * text 是可以共用的，且唯獨的。
+
+* 已初始化的靜態變數 (data)
+  * 可稱為初始化資料區段 (initialized data segment)。
+  * 存放已初始化的全域變數 (global variables) 與靜態變數 (static variables) 。
+  * 又可分為 2 個區域
+    1. 唯獨區域 (read-only area) : 存放一般變數，其資料隨著程式的執行而改變。
+    2. 可讀寫區域 (read-write area) : 存放固定的常數，如字串常量等。
+
+* 未初始化靜態變數 (bss)
+  * 可稱為未初始化資料區段 (uninitialized data segment)，又稱為 bss 區段 (名稱的起源來自於古老的組譯器，代表 block started by symbol)。
+  * 存放未初始化的全域變數與靜態變數，這些變數在程式執行之前會被系統初始化為 0 或是 null。
+
+* 動態配置變數 (堆積 heap)
+  * 堆積區段 (heap segment)
+  * 存放 C 語言使用 malloc 及 C++ 語言使用 new 所建立的變數。
+  * heap 中的資料，先配置的將放在低記憶體位址，後配置的將放在高記憶體位址。
+
+* 區域變數 (堆疊 stack)
+  * 堆疊區段 (stack segment)
+  * 存放函數的區域變數，及函數呼叫時需要的資訊 (ex. 函數返回的記憶體位址、處理器暫存器的值)。
+  * 每一次呼叫函數，就會在堆疊區段建立一個 stack frame，儲存該次呼叫的所有變數與狀態。
+  * stack 中的資料是後進先出 (LIFO)，先配置的將放在高記憶體位址，後配置的將放在低記憶體位址。
+
+* 命令列參數與環境變數 (system)
+  * 系統區段 (system segment)
+  * 存放使用者執行程式時所傳入的命令列引數與相關環境變數。
+
+<div style="text-align:center">
+    <img src="../img/memory_allocate.png" alt= "memory_allocate.png" width="70%">
+    <p>Software Architecture</p>
+</div>

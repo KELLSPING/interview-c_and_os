@@ -51,6 +51,9 @@
 * System Software Introduction - 脆脆, 2022 iThome 鐵人賽
   * <https://ithelp.ithome.com.tw/users/20152298/ironman/5622>
 
+* 你所不知道的C語言：指標篇 - 宅色夫
+  * <https://hackmd.io/@sysprog/c-pointer?type=view>
+
 ## Interview Resource ##
 
 * C語言測試 應知道的0x10個基本問題
@@ -70,6 +73,9 @@
 
 * C/C++ 常見試題 - Yu-Pu Wu
   * <https://medium.com/@earth875/c-c-%E5%B8%B8%E8%A6%8B%E8%A9%A6%E9%A1%8C-961619b14f88>
+
+* 面試心得 - dcard 不刪文的小可愛
+  * <https://www.dcard.tw/f/tech_job/p/239480651?cid=C3FCFA9E-387E-466F-AF6B-1D7063437C4E>
 
 ## 縮寫 abbreviation ##
 

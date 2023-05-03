@@ -6,7 +6,7 @@
 
 ## Table of contents ##
 
-* [Noun Definition](#noun-definition)
+* [定義 (definition)](#定義-definition)
 * [Basic](#basic)
 * [Bitwise](#bitwise)
 * [Data Type](#data-type)
@@ -15,12 +15,13 @@
 * [I/O](#io)
 * [Keyword](#keyword)
 * [Pointer](#pointer)
+* [函式指標 (function pointer)](#函式指標-function-pointer)
 * [Preprocessor](#preprocessor)
 * [String](#string)
 * [C Standard Library](#c-standard-library)
 * [Algorithm](#algorithm)
 
-## Noun Definition ##
+## 定義 (definition) ##
 
 * 複雜度
   * 時間複雜度 (Time Complexity)
@@ -77,6 +78,9 @@
 * 識別字及關鍵字
   * 識別字 (Identifier): 使用者自訂的變數與函數名稱。
   * 關鍵字 (Keyword): 編譯程式本身使用的識別字。
+
+* struct 與 class 的差別
+  * 
 
 ## Basic ##
 
@@ -451,9 +455,9 @@
 
 * 關鍵字 static 的作用是什麼?
 
-  1. 在函數本體內(in Function Block)，一個被宣告為靜態的變數，在這一函數被呼叫過程中維持其值不變。
-  2. 在一個Block(ie. {...} )內 (但在函數體外)，一個被宣告為靜態的變數可以被Block內所有的函數存取， 但不能被Block外的其它函數存取。它是一個本地的全局變量。
-  3. 在Block內，一個被聲明為靜態的函數，只可被這一Block內的其它函數呼叫。也就是這個函數被限制在宣告它的Block的本地範圍內使用。
+  1. 在函數本體內(in Function Block)，一個被宣告為 static 的變數，其值存在記憶體中，即使函數執行完畢，static 變數也不會消失。
+  2. 在一個 Block ( ie. {...} ) 內 (但在函數體外)，一個被宣告為 static 的變數，可以被 Block 內所有的函數存取，但不能被 Block 外的其它函數存取。它是一個本地的全局變量。
+  3. 在 Block 內，一個被聲明為 static 的函數，只可被這一 Block 內的其它函數呼叫。也就是這個函數被限制在宣告它的Block的本地範圍內使用。
 
 * 關鍵字 const 有什麼含意？
 
@@ -476,6 +480,9 @@
   * 全域變數 (global variable): 所有區段皆可使用此變數。
 
 * 關鍵字 sizeof
+  * sizeof 運算子是一個一元運算子，不是函數。
+  * sizeof 不會在執行時計算變數或型別的值，而是在編譯時，所有的 sizeof 都被具體的值替換。
+  * 運算之結果的型別為 size_t ，其實就是無號整數 (long long unsigned int) ，在 printf() 中，需使用 %llu 。
   * 查詢常數、變數、指針或資料型態所占位元組
   * struct
     * 對齊原則：每一成員需對齊爲後一成員類型的倍數
@@ -527,6 +534,7 @@
   ```
 
   ```C
+  /* 秘訣 : 由後往前念 */
   int a; // 一個整型數
   int *a; // 一個指向整數的指標
   int **a; // 一個指向指標的指標，它指向的指標是指向一個整型數
@@ -626,6 +634,80 @@
   }
   ```
 
+## 函式指標 (function pointer) ##
+
+* 指向 function 的指標，每個 function 的啟始記憶體位置，即為 function 的名稱。
+* C 語言中，不論是 variable、array、struct、或是 function(一段程式碼)，都有所屬的起始記憶體位置。
+* 函式指標的參數資料型態與引入參數個數皆須匹配
+
+* 範例
+
+  ```C
+  int doAdd(int a, int b) { return a + b; }
+  int doMinus(int a, int b) { return a - b; }
+
+  int main(void) {
+    // 宣告 function pointer，注意所設定的參數數量與型態
+    int (*my_func_ptr)(int, int);
+
+    my_func_ptr = doAdd; // function pointer 指向 doAdd
+    printf("fp 指向 doAdd => %d\n", (*my_func_ptr)(5, 3));    //結果：8
+
+    my_func_ptr = doMinus; // function pointer 指向 doMinus
+    printf("fp 指向 doMinus => %d\n", (*my_func_ptr)(5, 3));  //結果：2 
+
+    return 0;
+  }
+  ```
+
+* function pointer 結合 typedef
+
+  ```C
+  // 等於將 int (*)(int, int) 簡化成 MathMethod
+  typedef int (*MathMethod)(int, int); 
+
+  int Mul(int a, int b){return a*b;}
+  int Divide(int a, int b){return a/b;}
+  int Minus(int a, int b){return a-b;}
+  int Add(int a, int b){return a+b;}
+
+  int Calc(int x, int y, MathMethod Opt){
+      return Opt(x, y);
+  } 
+  
+  int main(){
+      int a = 8, b = 7;
+      printf("a x b = %d\n", Calc(a, b, Mul)); 
+      printf("a / b = %d\n", Calc(a, b, Divide));
+      printf("a + b = %d\n", Calc(a, b, Add));
+      printf("a - b = %d\n", Calc(a, b, Minus));
+  }
+  ```
+
+* function pointer array 用法
+
+  ```C
+  #include <stdint.h>
+  #include <stdbool.h>
+
+  void func_run() { printf("start\r\n"); }
+  void func_stop() { printf("stop\r\n"); }
+  void func_exit() { printf("exit\r\n"); }
+
+  static void (*command[])(void) = {func_run, func_stop, func_exit};
+
+  int OnStateChange(uint8_t state){
+      if (state >= 3)
+      {
+          printf("Wrong state!\n");
+          return false;
+      }
+
+      command[state]();
+      return 0;
+  }
+  ```
+
 ## Preprocessor ##
 
 * 種類
@@ -668,8 +750,6 @@
 
 ## String ##
 
-* sizeof 運算子是一個一元運算子。運算之結果的型別為 size_t ，其實就是無號整數(long long unsigned int)，在 printf() 中，需使用 %llu 。
-
 * C 語言中，字串使用""括住，在宣告時，則會自動在字串的尾端幫你補上'\0'。
 
   ```C
@@ -702,6 +782,25 @@
 
   * strcpy( s1, s2 ) :
   * strcmp( s1, s2 ) :
+
+* 字串反轉 string reverse
+
+  ```C
+  void swap(char* a, char* b){
+    if(a==b)return;
+    *a^=*b;
+    *b^=*a;
+    *a^=*b;
+  }
+  void reverseString(char* s, int sSize){    
+      int i=0,j=sSize-1;
+      while(i<j){
+          swap(s+i,s+j);
+          i++;j--;
+      }
+      return;
+  }
+  ```
 
 ## C Standard Library ##
 
@@ -792,4 +891,14 @@
   * 使用額外一個變數
   * 加減法運算
   * 位元運算
+
+    ```C
+    void swap(char* a, char* b){
+        if(a==b)return;
+        *a^=*b;
+        *b^=*a;
+        *a^=*b;
+    }
+    ```
+
   * 使用 define
