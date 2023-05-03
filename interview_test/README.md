@@ -4,6 +4,20 @@
 /* Hi, this is Interview Test page. */
 ```
 
+## Realtek ##
+
+* 位元操作
+
+* 指標特性
+
+* Big-Endian 與 Little-Endian
+
+* 二元樹反轉
+
+* memory leak
+
+* call by value, call by reference
+
 ## ASolid ##
 
 * Bitwise
