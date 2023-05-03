@@ -54,6 +54,18 @@
     <p>Embedded Engineer RoadMap 2022</p>
 </div>
 
+## 縮寫 abbreviation ##
+
+* JD : job description
+
+* 開發板支援套裝軟體 (board support package, BSP)
+
+* 基板管理控制器 (Board Management Controller, BMC)
+
+* 系统管理控制器 (System Management Control, SMC)
+
+* 
+
 ## Inspirational Quotes ##
 
 * "A language that doesn't affect the way you think about programming is not worth knowing." - Alan Perlis

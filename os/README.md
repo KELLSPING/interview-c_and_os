@@ -28,6 +28,10 @@
   * 透過 kernel mode 跟 user mode 來保護硬體。
   * 提供 high level 的 system call 讓使用者不能直接操作硬體，簡化操作，也更加有效率等。
 
+## CPU 排班 (CPU Scheduling) ##
+
+* 當討論一般的排班概念時，使用的是行程排班 (process scheduling) ；而提到特定執行緒觀念時，使用的是執行緒排班 (thread scheduling) 。
+
 ## 基本輸入輸出系統 (Basic Input/Output System, BIOS) ##
 
 * 說明
