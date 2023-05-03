@@ -4,7 +4,7 @@
 /* Hi, this is MAIN page. */
 ```
 
-## Resource ##
+## Learning Resource ##
 
 * 計算機結構 - 黃婷婷教授
 
@@ -32,19 +32,13 @@
 * 微處理機 -  鄭雲謙教授
 
 <div style="text-align:center">
-    <img src="img/course_microprocessor.png" alt="course_microprocessor" width="90%">
+    <img src="img/course_microprocessor.png" alt="course_microprocessor" width="80%">
     <p>Related course of Microprocessor</p>
 </div>
 
 * 作業系統 Operating System Concepts 10/e - Abraham Silberschatz , Peter Raer Galvin , Greg Gagne 著 吳庭育、駱詩軒 譯
 
 * C 語言教學手冊第四版 - 洪維恩
-
-* System Software Introduction - 脆脆, 2022 iThome 鐵人賽
-  * <https://ithelp.ithome.com.tw/users/20152298/ironman/5622>
-
-* C語言測試 應知道的0x10個基本問題
-  * <https://creteken.pixnet.net/blog/post/24524138>
 
 * Embedded Engineer RoadMap 2022 - Alok Mishra
   * <https://www.linkedin.com/posts/nazirahmed-tolagi-388b2822_embedded-engineer-roadmap-2022-activity-6963680658061737984-_MzE/>
@@ -53,6 +47,29 @@
     <img src="img/embedded_engineer_roadmap_2022.png" alt="embedded_engineer_roadmap_2022" width="90%">
     <p>Embedded Engineer RoadMap 2022</p>
 </div>
+
+* System Software Introduction - 脆脆, 2022 iThome 鐵人賽
+  * <https://ithelp.ithome.com.tw/users/20152298/ironman/5622>
+
+## Interview Resource ##
+
+* C語言測試 應知道的0x10個基本問題
+  * <https://creteken.pixnet.net/blog/post/24524138>
+
+* 面試整理 - 陳家錡
+  * <https://hackmd.io/@g9tdU4gDSTiEZrerd0g7-w/SyCXEfsSE>
+
+* 面試 C/C++ 觀念整理 - Skyler Chen
+  * <https://skylerz.medium.com/%E9%9D%A2%E8%A9%A6-c-c-%E8%A7%80%E5%BF%B5%E6%95%B4%E7%90%86-3a259b0a09bc>
+
+* 2017Homework1-整理面試題目 - 陳致佑
+  * <https://hackmd.io/@6zSPCmL1Szq0bq_rOqcO6w/HkkhJ-ah-?type=view>
+
+* C/C++ - 常見 C 語言觀念題目總整理（適合考試和面試）- Mr. Opengate
+  * <https://www.mropengate.com/2017/08/cc-c.html>
+
+* C/C++ 常見試題 - Yu-Pu Wu
+  * <https://medium.com/@earth875/c-c-%E5%B8%B8%E8%A6%8B%E8%A9%A6%E9%A1%8C-961619b14f88>
 
 ## 縮寫 abbreviation ##
 
@@ -63,8 +80,6 @@
 * 基板管理控制器 (Board Management Controller, BMC)
 
 * 系统管理控制器 (System Management Control, SMC)
-
-* 
 
 ## Inspirational Quotes ##
 
