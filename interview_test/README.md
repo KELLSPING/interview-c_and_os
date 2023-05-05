@@ -18,6 +18,133 @@
 
 * call by value, call by reference
 
+## Garmin ##
+
+* 哪一行編譯會錯誤
+
+```C
+// foo 是一個指向字元常量的指標，指標的指向可以變，但指向的內容不可以變
+const char *foo = "wow";  
+foo = "top";
+foo[0] = 1; // error: assignment of read-only location '*foo'
+```
+
+* In C language, when a global variable may be modified by an exception handler, it should be declared as ?
+  * volatile
+
+* In C++, 下列問題請回答 true 或 false
+
+    ```C
+    int ia[] = {0,1,1,2,3,5,8,13,21};
+
+    ia[1] == *(ia+1)
+    &ia[2] == ia+2
+    (&ia[2] - &ia[0]) == 2
+    ```
+
+  * 1 == 1, true
+  * 89bffdc8 == 89bffdc8, true
+  * 2 == 2, true
+
+* 更正程式碼
+
+  ```C
+  void AddData(void *data, unsigned int value, int index){
+      data[index] = value;
+  }
+
+  int main(void){
+      unsigned int arr[20];
+      AddData(arr, 10, 5);
+      return 0;
+  }
+  ```
+
+  * warning: dereferencing 'void *' pointer
+  * 將 void \*data 更改為 unsigned int *data
+
+* 更正程式碼
+
+  ```C
+  void swqp(int *a, int *b){
+    int *temp;
+    temp = a;
+    a = b;
+    b = temp;
+  }
+  ```
+
+  ```C
+  // 更正後
+  void swap(int *a, int *b){
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+  }
+  ```
+
+* 輸出顯示
+
+  ```C
+  typedef union {
+      int i;
+      unsigned char ch[3];
+  }Student;
+
+  int main(void){
+      Student student;
+      student.i = 0x1420;
+      printf("%d\n", sizeof(student));
+      printf("%d\n", student.ch[0]);
+      printf("%d\n", student.ch[1]);
+      printf("%d\n", student.ch[2]);
+      return 0;
+  }
+  ```
+
+  * 4, 32 (ascii SP), 20 (ascii DC4), 0 (ascii NUL)
+
+* 回傳值是多少
+
+  ```C
+  int fun(int x){
+    int count = 0;
+    while (x){
+      count++;
+      x = x & (x - 1);
+    }
+    return count;
+  }
+  ```
+
+  * if input x is 51
+    * 4
+  * if input x is 1025
+    * 2
+
+* 請說明"靜態記憶體配置"與"動態記憶體配置"的差異
+
+* Write a function to reverse digits of an integer - int reverse(int x), the answer should return 0 when the reversed integer overflows.
+
+  * input x=1234, return 4321
+
+  ```C
+  #include <limits.h>
+  int reverse(int n){
+    int reversed = 0;
+    if (n > INT_MAX){
+        return 0;
+    }
+    while (n != 0){
+        int remainder = n % 10;
+        reversed = reversed * 10 + remainder;
+        n /= 10;
+    }
+    return reversed;
+  }
+  ```
+
 ## ASolid ##
 
 * Bitwise

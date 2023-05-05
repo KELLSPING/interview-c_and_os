@@ -8,5 +8,8 @@
                 "p"
             ]
         }
+    },
+    "files.associations": {
+        "stdio.h": "c",
     }
 }

@@ -74,18 +74,21 @@
 * C/C++ 常見試題 - Yu-Pu Wu
   * <https://medium.com/@earth875/c-c-%E5%B8%B8%E8%A6%8B%E8%A9%A6%E9%A1%8C-961619b14f88>
 
-* 面試心得 - dcard 不刪文的小可愛
+* 面試心得 - Dcard 不刪文的小可愛
   * <https://www.dcard.tw/f/tech_job/p/239480651?cid=C3FCFA9E-387E-466F-AF6B-1D7063437C4E>
+
+* [C觀念] volatile 的用法和用意 - 痞客邦 不會的就放這邊
+  * <https://anal02.pixnet.net/blog/post/117485340-%5Bc%5D-volatile-%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E7%94%A8%E6%84%8F>
 
 ## 縮寫 abbreviation ##
 
-* JD : job description
+* JD : Job Description
 
-* 開發板支援套裝軟體 (board support package, BSP)
+* BSP : 開發板支援套裝軟體 (Board Support Package)
 
-* 基板管理控制器 (Board Management Controller, BMC)
+* BMC : 基板管理控制器 (Board Management Controller)
 
-* 系统管理控制器 (System Management Control, SMC)
+* SMC : 系统管理控制器 (System Management Control)
 
 ## Inspirational Quotes ##
 

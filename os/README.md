@@ -193,6 +193,7 @@
 * 動態配置變數 (堆積 heap)
   * 堆積區段 (heap segment)
   * 存放 C 語言使用 malloc 及 C++ 語言使用 new 所建立的變數。
+  * 需要使用者輸入大小的陣列。
   * heap 中的資料，先配置的將放在低記憶體位址，後配置的將放在高記憶體位址。
 
 * 區域變數 (堆疊 stack)
@@ -209,3 +210,33 @@
     <img src="../img/memory_allocate.png" alt= "memory_allocate.png" width="70%">
     <p>Software Architecture</p>
 </div>
+
+* 記憶體配置練習
+
+  ```C
+  int a=0;   //global 初始化區
+  char *p1;  //global 未初始化區
+  main(){
+      int b;             // stack
+      char s[]="abc";    // stack
+      char *p2;          // stack
+      char *p3="123456"; // 123456\0 在常量區，p3在stack。
+      static int c=0;   // global (static) 初始化區
+      p1 = (char*)malloc(10);
+      p2 = (char*)malloc(20);  //分配得來得10和20位元組的區域在heap
+      strcpy(p1,"123456");  
+      //123456\0 在常量區，編譯器可能會將它與 p3 中的 123456\0 優化成一個地方。
+  }
+  ```
+
+  ```C
+  // 專屬於這個檔案的全域變數，其他檔案不能存取
+  static int num_a; 
+
+  void func (int num_b) { // stack 區 
+    int num_c; // stack 區
+
+    // scope不變，只能在函數 func 內呼叫，但 lifetime 是整支程式執行的時間。
+    static int num_d; 
+  }
+  ```
