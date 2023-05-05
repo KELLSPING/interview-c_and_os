@@ -23,6 +23,24 @@
 
 ## 定義 (definition) ##
 
+### ASCII 字符集 ###
+
+* 在 ascii 中，包含 128 個字符，其中前 32 個，即 0~31 (0x00~0x1F) ，為不可見字符，這些字符叫做控制字符。
+* ascii 中，第 127 個字符對應的是 delete ，也是不可見的。
+* 這些字符皆對應著一個特殊的控制空能的字符，簡稱功能字符或功能碼 (function code) 。
+* 此類字符，對應不同的功能，發揮一定的控制作用，所以也稱為控制字符。
+
+  | 十進制 (dec) | 十六進制 (hex) | 控制字符 | 轉義字符 | 說明 | Ctrl+字母 |
+  | --- | --- | --- | --- | --- | --- |
+  | 0 | 0x00 | %NUL |  | Null character (空字符) | @ (Shift + 2) |
+  | 8 | 0x08 | BS | b | Backspace (退格) | H |
+  | 10 | 0x0A | LF | n | Line feed (換行鍵) | J |
+  | 13 | 0x0D | CR | r | Carriage return (回車鍵) | M |
+  | 20 | 0x14 | DC4 |  | Device Control 4 (設備控制 4) | T |
+  | 24 | 0x18 | CAN |  | Cancel (取消) | X |
+  | 32 | 0x20 | SP |  | White space | [Space] * |
+  | 127 | 0x7F | DEL |  | Delete (刪除) | ?* |
+
 ### 變數範圍和生命周期 ###
 
 * 區域變數 (loacl variable): local 變數僅活在該函式內，存放位置在 stack 或 heap 記憶體中。
@@ -290,10 +308,13 @@
 * 在一個數值中計算幾個 bit 為 1
 
   ```C
-  int cnt = 0;
-  while(x){
-      x &= (x-1);
-      cnt++;
+  int countBitOne(int x){
+    int count = 0;
+    while (x){
+        count++;
+        x = x & (x - 1);
+    }
+    return count;
   }
   ```
 
