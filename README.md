@@ -77,6 +77,9 @@
 * 面試心得 - Dcard 不刪文的小可愛
   * <https://www.dcard.tw/f/tech_job/p/239480651?cid=C3FCFA9E-387E-466F-AF6B-1D7063437C4E>
 
+* [C觀念] volatile 的用法和用意 - 痞客邦 不會的就放這邊
+  * <https://anal02.pixnet.net/blog/post/117485340-%5Bc%5D-volatile-%E7%9A%84%E7%94%A8%E6%B3%95%E5%92%8C%E7%94%A8%E6%84%8F>
+
 ## 縮寫 abbreviation ##
 
 * JD : Job Description

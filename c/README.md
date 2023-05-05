@@ -7,7 +7,7 @@
 ## Table of contents ##
 
 * [定義 (definition)](#定義-definition)
-* [Basic](#basic)
+* [基本題](#基本題)
 * [Bitwise](#bitwise)
 * [Data Type](#data-type)
 * [Data Structure](#data-structure)
@@ -23,66 +23,90 @@
 
 ## 定義 (definition) ##
 
-* 複雜度
-  * 時間複雜度 (Time Complexity)
-    * Big-O
-      * f(n) = Ο(g(n))
-    * 排序: n (常數) < log n < n < n log n < n^2 < 2^n < n!
-      1. 常數時間 (Constant Time) => O(1)，例如：陣列讀取
-      2. 對數時間、次線性時間 (Logarithmic Time) => O(log n)，例如：二分搜尋
-      3. 線性時間 (Linear Time) => O(n)，例如：簡易搜尋
-      4. 線性乘對數時間 (Quasilinear Time) => O(n log n)，例如：合併排序
-      5. 次方時間 (Quadratic Time) => O(n^2)，例如：選擇排序
-      6. 指數時間 (Exponential Time) => O(2^n)，例如：費式數列
-      7. 階乘時間 (Factorial Time) => O(n!)
-  * 空間複雜度 (Space Complexity)
+### 變數範圍和生命周期 ###
 
-* 傳值呼叫、傳址呼叫、參考呼叫
-  * 傳值呼叫 (call by value)
-    * 複製記憶體。副程式與主程式的變數是存放在個別的記憶體中。
+* 區域變數 (loacl variable): local 變數僅活在該函式內，存放位置在 stack 或 heap 記憶體中。
+* 靜態變數 (static variable)
+  * 在編譯時，就已配置固定的記憶體空間，使靜態變數的值得以保存。
+  * 再次呼叫該函數時，會將靜態變數存在記憶體空間中的值取出來用。
+  * 作用
+    1. 在函數本體內，一個被宣告為靜態的變數，在這一函數被呼叫過程中，其值不變。
+    2. 在一個 block 中，一個被宣告為靜態的變數，可以被 block 內的所有函數存取，但不能被 block 外的其他函數存取。是一個本地的全局變量。
+    3. 在一個 block 中，一個被宣告為靜態的函數，可以被 block 內的其他函數呼叫，但不能在 block 外被呼叫。
+* 全域變數 (global variable): 所有區段皆可使用此變數。
 
-    ```C
-    int callByValue(int a, int b){...}
+### 複雜度 ###
+
+* 時間複雜度 (Time Complexity)
+  * Big-O
+    * f(n) = Ο(g(n))
+  * 排序: n (常數) < log n < n < n log n < n^2 < 2^n < n!
+    1. 常數時間 (Constant Time) => O(1)，例如：陣列讀取
+    2. 對數時間、次線性時間 (Logarithmic Time) => O(log n)，例如：二分搜尋
+    3. 線性時間 (Linear Time) => O(n)，例如：簡易搜尋
+    4. 線性乘對數時間 (Quasilinear Time) => O(n log n)，例如：合併排序
+    5. 次方時間 (Quadratic Time) => O(n^2)，例如：選擇排序
+    6. 指數時間 (Exponential Time) => O(2^n)，例如：費式數列
+    7. 階乘時間 (Factorial Time) => O(n!)
+* 空間複雜度 (Space Complexity)
+
+### 傳值呼叫、傳址呼叫、參考呼叫 ###
+
+* 傳值呼叫 (call by value)
+  * 複製記憶體。副程式與主程式的變數是存放在個別的記憶體中。
+
+  ```C
+  int callByValue(int a, int b){...}
+  ```
+
+* 傳址呼叫 (call by address, call by pointer)
+  * 共用記憶體。副程式與主程式的變數是使用同一個記憶體。
+
+  ```C
+  int callByAddress(int *a, int *b){...}
+  ```
+
+* 參考呼叫 (call by reference): 只能用在 C++
+
+  ```C++
+  int callByReference(int &a, int &b){...}
     ```
 
-  * 傳址呼叫 (call by address, call by pointer)
-    * 共用記憶體。副程式與主程式的變數是使用同一個記憶體。
+### 編譯與執行的過程 ###
 
-    ```C
-    int callByAddress(int *a, int *b){...}
-    ```
+* source code (.c, .h) -> Preprocessor (.c) -> Compiler (.s) -> Assembler (.o) -> Linker (.exe) -> Loader  -> CPU
+  1. 原始碼 (source code): 副檔名為 .c，標頭檔副檔名為 .h。
+  2. [Build] 預處理器 (Preprocessor): 將須引入的檔案或是 macro 展開。
+  3. [Build] 編譯器 (Compiler): C 語言常見的編譯器有 GCC、Clang，在此 GCC 為廣義的編譯器，可以達到 build 的所有功能。狹義的編譯器，主要就是將 C 語言轉成組合語言，產出 .s, .asm 檔。
+  4. [Build] 組譯器 (Assembler): 將低階語言所寫的程式翻譯成目的檔，為 .o 檔。
+  5. [Build] 連結器 (Linker): 將多個目的檔或靜態函式庫 (Static library, .a, .lib) 合併成一個可執行檔 (.exe, .out) 或函式庫的工具。
+  6. [Run] 載入器 (Loader): 是作業系統的一部份，用於把程式和動態函式庫 (Shared library, .so, .dll) 的指令載入到記憶體 (RAM) 中等待 CPU 執行，當載入完成之後，作業系統會將控制權交給載入的程式碼，讓它開始運作。
+  7. [Run] CPU: 對載入的指令進行運算或儲存等操作。
+* .a 檔與 .exe 檔的差別
+  * .exe 檔中，有包含 main () 的 source code 。
 
-  * 參考呼叫 (call by reference): 只能用在 C++
+### 偵錯 (Debug) ###
 
-    ```C++
-    int callByReference(int &a, int &b){...}
-    ```
+* 語法錯誤 (Syntax error): 不符合語言的規定，將編譯後所指出的錯誤修正，再重新編譯即可。
+* 語意錯誤 (Semantic error): 程式本身的語法沒有問題，但邏輯上可能有瑕疵，造成非預期性的結果。
+* 記憶體區段錯誤 (Segmentation fault, 縮寫 segfault): 也稱存取權限衝突 (access violation)，是一種程式錯誤。
 
-* 編譯與執行的過程
-  * source code (.c, .h) -> Preprocessor (.c) -> Compiler (.s) -> Assembler (.o) -> Linker (.exe) -> Loader  -> CPU
-    1. 原始碼 (source code): 副檔名為 .c，標頭檔副檔名為 .h。
-    2. [Build] 預處理器 (Preprocessor): 將須引入的檔案或是 macro 展開。
-    3. [Build] 編譯器 (Compiler): C 語言常見的編譯器有 GCC、Clang，在此 GCC 為廣義的編譯器，可以達到 build 的所有功能。狹義的編譯器，主要就是將 C 語言轉成組合語言，產出 .s, .asm 檔。
-    4. [Build] 組譯器 (Assembler): 將低階語言所寫的程式翻譯成目的檔，為 .o 檔。
-    5. [Build] 連結器 (Linker): 將多個目的檔或靜態函式庫 (Static library, .a, .lib) 合併成一個可執行檔 (.exe, .out) 或函式庫的工具。
-    6. [Run] 載入器 (Loader): 是作業系統的一部份，用於把程式和動態函式庫 (Shared library, .so, .dll) 的指令載入到記憶體 (RAM) 中等待 CPU 執行，當載入完成之後，作業系統會將控制權交給載入的程式碼，讓它開始運作。
-    7. [Run] CPU: 對載入的指令進行運算或儲存等操作。
-  * .a 檔與 .exe 檔的差別
-    * .exe 檔中，有包含 main () 的 source code 。
+### 識別字及關鍵字 ###
 
-* 偵錯 (Debug)
-  * 語法錯誤 (Syntax error): 不符合語言的規定，將編譯後所指出的錯誤修正，再重新編譯即可。
-  * 語意錯誤 (Semantic error): 程式本身的語法沒有問題，但邏輯上可能有瑕疵，造成非預期性的結果。
-  * 記憶體區段錯誤 (Segmentation fault, 縮寫 segfault): 也稱存取權限衝突 (access violation)，是一種程式錯誤。
+* 識別字 (Identifier): 使用者自訂的變數與函數名稱。
+* 關鍵字 (Keyword): 編譯程式本身使用的識別字。
 
-* 識別字及關鍵字
-  * 識別字 (Identifier): 使用者自訂的變數與函數名稱。
-  * 關鍵字 (Keyword): 編譯程式本身使用的識別字。
+### struct 與 class 的差別 ###
 
-* struct 與 class 的差別
-  * 
+### 最佳化方法種類 ###
 
-## Basic ##
+* 硬體
+  1. 增加 cache : 在 CPU 和記憶體中間增加 cache，解決 CPU 和記憶體之間執行速率差異過大的問題。
+* 軟體
+  1. 編譯器最佳化 : 在編譯連結時由編譯器進行優化，會調整程式碼的執行順序或者刪掉一些無用的語句。將記憶體中讀取的資料存到 cache 或 暫存器中。
+  2. 程式設計最佳化 : 編寫程式碼時，對程式碼的邏輯順序進行合理安排，提升效率。
+
+## 基本題 ##
 
 * 列印輸出
 
@@ -149,15 +173,15 @@
 * 基本運算
 
     ```C
-    unsigned long num_a = 0x00001111;
-    unsigned long num_b = 0x00000202;
-    unsigned long num_c;
+    unsigned long v1 = 0x00001111;
+    unsigned long v2 = 0x00000202;
+    unsigned long v;
 
-    num_c = num_a & (~num_b);
-    printf("num_c=%x\n", num_c); // 1111
+    v = v1 & (~v2);
+    printf("num_c=%x\n", v); // 1111
 
-    num_c = num_c | num_b;
-    printf("num_c=%x\n", num_c); // 1313
+    v = v | v2;
+    printf("num_c=%x\n", v); // 1313
     ```
 
 * mask 方法做 bitwise 操作
@@ -263,40 +287,94 @@
     }
     ```
 
+* 在一個數值中計算幾個 bit 為 1
+
+  ```C
+  int cnt = 0;
+  while(x){
+      x &= (x-1);
+      cnt++;
+  }
+  ```
+
+* 將一個數值的奇偶 bit 互換
+
+  ```C
+  x = (x&0xaaaaaaaa)>>1 | (x&0x55555555)<<1;
+  ```
+
+* bit 清除後三碼
+
+  ```C
+  x &= (~0)<<3;
+  ```
+
 ## Data Type ##
+
+### CPU type ###
 
 * x86_64, x64, AMD64 皆可以代表為 64-bits CPU。
 
-* 基本資料型態 (Primitive Data Types)
-    |  | 32-bits CPU (x86) | 64-bits CPU (x86_64) | format str | #include <stdint.h> |
-    | --- | --- | --- | --- | --- |
-    |  | Size(bytes) | Size(bytes) |  | Typedef |
-    | _Bool | 1 | 1 | %i、%d |  |
-    | char | 1 | 1 | %c | uint8_t |
-    | short (int) | 2 | 2 | %hi、%hd | uint16_t |
-    | int | 2 | 4 | %i、%d | uint32_t |
-    | long (int) | 4 | 8 | %li、%ld | uint64_t |
-    | long long | 4 | 8 | %lli、%lld |  |
-    | float | 4 | 4 | %f、%e、%g |  |
-    | double | 8 | 8 | %lf、%e、%g |  |
-    | long double | 12 | 16 | %lf、%le、%lg |  |
-    | size_t | 4 | 8 |  |  |
-    | pointer | 4 | 8 | %p |  |
-    | string | 4 | 8 | %s |  |
+### 基本資料型態 (Primitive Data Types) ###
 
-* 複合資料型態 (Compound Data Types)
-  * 結構 (struct)
-    * 產生一種新的資料型態，每個成員變數都配置一段空間
-    * 在 C 和 C++ 中，struct 用來包裝不同型態的資料。
-    * 在 C++ 中，如果要針對內部成員做複雜處理的時候，都使用 class。
-    * 位元欄位 (Bit fields)
-    * 指定、取址、使用結構成員運算子 '.' 跟使用結構指標運算子 '->'
-  * 聯合 (union)
-    * 產生一種新的資料型態，共用一段記憶體空間，所需的記憶體空間大小由最大的成員變數覺得
-    * 指定、取址、使用結構成員運算子 '.' 跟使用結構指標運算子 '->'
-  * 列舉 (enum)
-    * 一組由識別字所代表的整數常數
-    * 除非特別指定，不然都是由0開始，接下來遞增1
+|  | 32-bits CPU (x86) | 64-bits CPU (x86_64) | format str | #include <stdint.h> |
+| --- | --- | --- | --- | --- |
+|  | Size(bytes) | Size(bytes) |  | Typedef |
+| _Bool | 1 | 1 | %i、%d |  |
+| char | 1 | 1 | %c | uint8_t |
+| short (int) | 2 | 2 | %hi、%hd | uint16_t |
+| int | 2 | 4 | %i、%d | uint32_t |
+| long (int) | 4 | 8 | %li、%ld | uint64_t |
+| long long | 4 | 8 | %lli、%lld |  |
+| float | 4 | 4 | %f、%e、%g |  |
+| double | 8 | 8 | %lf、%e、%g |  |
+| long double | 12 | 16 | %lf、%le、%lg |  |
+| size_t | 4 | 8 |  |  |
+| pointer | 4 | 8 | %p |  |
+| string | 4 | 8 | %s |  |
+
+* int 考題
+
+```C
+#include <limits.h>
+
+printf("The minimum value of INT = %x", INT_MIN); // 0x80000000
+printf("The maximum value of INT = %x", INT_MAX); // 0x7fffffff
+```
+
+### 複合資料型態 (Compound Data Types) ###
+
+* 結構 (struct)
+  * 產生一種新的資料型態，每個成員變數都配置一段空間
+  * 在 C 和 C++ 中，struct 用來包裝不同型態的資料。
+  * 在 C++ 中，如果要針對內部成員做複雜處理的時候，都使用 class。
+  * 位元欄位 (Bit fields)
+  * 指定、取址、使用結構成員運算子 '.' 跟使用結構指標運算子 '->'
+* 聯合 (union)
+  * 產生一種新的資料型態，共用一段記憶體空間，所需的記憶體空間大小由最大的成員變數覺得
+  * 指定、取址、使用結構成員運算子 '.' 跟使用結構指標運算子 '->'
+* 列舉 (enum)
+  * 一組由識別字所代表的整數常數
+  * 除非特別指定，不然都是由0開始，接下來遞增1
+
+### Union ###
+
+* union 考題
+
+  ```C
+  union StateMachine {
+      char character;
+      int number;
+      char *str;     //32-bits: 4     64-bits: 8
+  };
+  int main(void) {
+      union StateMachine machine;
+      machine.number = 1;
+      printf("sizeof: %lu\n", sizeof(machine));
+      printf("number: %d\n", machine.number);
+      return 0;
+  }
+  ```
 
 ## Data Structure ##
 
@@ -341,6 +419,10 @@
 * Graph
 
 * Hash table
+
+### Linked List ###
+
+* Sorted Liked List - Insertion
 
 ## Loops ##
 
@@ -394,6 +476,8 @@
             return gcd(y, x % y); // 前一步驟的除數為被除數，餘數為除數
     }
     ```
+
+* 尋找質數 (find prine number)
 
 ## I/O ##
 
@@ -453,40 +537,53 @@
 
 ## Keyword ##
 
-* 關鍵字 static 的作用是什麼?
+### static ###
 
+* 說明
   1. 在函數本體內(in Function Block)，一個被宣告為 static 的變數，其值存在記憶體中，即使函數執行完畢，static 變數也不會消失。
   2. 在一個 Block ( ie. {...} ) 內 (但在函數體外)，一個被宣告為 static 的變數，可以被 Block 內所有的函數存取，但不能被 Block 外的其它函數存取。它是一個本地的全局變量。
   3. 在 Block 內，一個被聲明為 static 的函數，只可被這一 Block 內的其它函數呼叫。也就是這個函數被限制在宣告它的Block的本地範圍內使用。
 
-* 關鍵字 const 有什麼含意？
+### const ###
 
+* 說明
   * const 代表只可以讀取不能寫入，使用 const 有以下好處：
     1. 提升程式碼可讀性
     2. 使編譯器保護那些不希望被改變的參數
     3. 給優化器一些附加的資訊
 
-* 關鍵字 volatile 有什麼含意？
+### volatile (易揮發的) ###
 
-* 變數範圍和生命周期
-  * 區域變數 (loacl variable): local 變數僅活在該函式內，存放位置在 stack 或 heap 記憶體中。
-  * 靜態變數 (static variable)
-    * 在編譯時，就已配置固定的記憶體空間，使靜態變數的值得以保存。
-    * 再次呼叫該函數時，會將靜態變數存在記憶體空間中的值取出來用。
-    * 作用
-      1. 在函數本體內，一個被宣告為靜態的變數，在這一函數被呼叫過程中，其值不變。
-      2. 在一個 block 中，一個被宣告為靜態的變數，可以被 block 內的所有函數存取，但不能被 block 外的其他函數存取。是一個本地的全局變量。
-      3. 在一個 block 中，一個被宣告為靜態的函數，可以被 block 內的其他函數呼叫，但不能在 block 外被呼叫。
-  * 全域變數 (global variable): 所有區段皆可使用此變數。
+* 說明
+  * 被 volatile 修飾的變數代表它可能會被不預期的更新，因此告知編譯器不對它涉及的地方做最佳化，並在每次操作它的時候都讀取該變數實體位址上最新的值，而不是讀取暫存器的值。
+  * 常見的應用
+    1. 修飾中斷處理程式中 (ISR) 中可能被修改的全域變數
+    2. 修飾多執行緒 (multi-threaded) 的全域變數
+    3. 設備的硬體暫存器 (如狀態暫存器)
 
-* 關鍵字 sizeof
+### inline 函式 ###
+
+* 說明
+  * inline 可以將修飾的函式設為行內函式，即像巨集 (define) 一樣將該函式展開編譯，用來加速執行速度。
+  * inline 函示只能建議編譯器，建議不一定被採納，例如遞迴函式無法在呼叫點展開，數千行的函式也不適合在呼叫點展開，如果編譯器拒絕將函式展開，會視為一般函式進行編譯，inline 的建議會被忽略。
+
+* inline 和 #define 的差別
+  1. inline 函數只對參數進行一次計算，避免了部分巨集易產生的錯誤。
+  2. inline 函數的參數類型被檢查，並進行必要的型態轉換。
+  3. 巨集定義盡量不使用於複雜的函數
+  4. 用 inline 後編譯器不一定會實作，僅為建議。
+
+### sizeof ###
+
+* 說明
   * sizeof 運算子是一個一元運算子，不是函數。
   * sizeof 不會在執行時計算變數或型別的值，而是在編譯時，所有的 sizeof 都被具體的值替換。
   * 運算之結果的型別為 size_t ，其實就是無號整數 (long long unsigned int) ，在 printf() 中，需使用 %llu 。
   * 查詢常數、變數、指針或資料型態所占位元組
-  * struct
-    * 對齊原則：每一成員需對齊爲後一成員類型的倍數
-    * 補齊原則：最終大小補齊爲成員類型最大值的倍數
+
+* 原則
+  * 對齊：每一成員需對齊爲後一成員類型的倍數
+  * 補齊：最終大小補齊爲成員類型最大值的倍數
 
     ```C
     // sizeof(struct A) = 16 bytes
@@ -632,6 +729,66 @@
       printf("ch = %p\n", ch);
       return 0;
   }
+  ```
+
+* 指標考題
+
+  ```C
+  char s[]="0113256";
+  char *p=s;
+  printf("%c",*p++);
+  printf("%c",*(p++));
+  printf("%c",(*p)++);
+  printf("%c",*++p);
+  printf("%c",*(++p));
+  printf("%c",++*p);
+  printf("%c",++(*p));
+  printf("\n%s",s);
+  ```
+
+* 指標陣列考題
+
+  ```C
+  int a[] ={1,2,3,4,5,6,7,9};
+  int *ptr = (int*) (&a+1);
+  printf("%d\n", &a);
+  printf("%d\n", &a+1);
+  printf("%d\n", ptr);
+  printf("%d\n", *(ptr));
+  printf("%d\n", ptr-1);
+  printf("%d\n", *(ptr-1));
+  printf("%d\n", ptr-2);
+  printf("%d\n", *(ptr-2));
+  printf("%d\n", *a);
+  printf("%d\n", *a+7);
+  printf("%d\n", *(a+7));
+  ```
+
+* 陣列指標型態考題
+
+  ```C
+  int arr[] = {10,20,30,40,50};
+  int *ptr1 = arr;
+  int *ptr2 = arr+5;
+  printf("%d\n", (ptr2-ptr1));               //5
+  printf("%d\n", (char*)ptr2 - (char*)ptr1); //20
+  ```
+
+* 多重陣列考題
+
+  ```C
+  char *str[ ][2] =
+    {"professor","Justin","teacher","Momor","student","Caterpillar"};
+  char str2[3][10] = {"professor", "Justin", "etc"};
+  printf("%s\n", str[1][1]); //Momor
+  printf("%c\n",str2[1][1]); //u
+  ```
+
+  ```C
+  double data[3][5] = {{1,3,4,5,10},{7,8,9,10,11},{2,12,6,15,14}};
+  cout<<*(data+1)[1]<<endl;   // 2  = data[2][0]
+  cout<<*((data+1)[1])<<endl; // 2  = data[2][0]
+  cout<<(*(data+1))[1]<<endl; // 8  = data[1][1]
   ```
 
 ## 函式指標 (function pointer) ##
@@ -839,29 +996,33 @@
 
 ## Algorithm ##
 
-* 線性搜尋 (Linear Search)
+### 排序 (Sort) ###
 
-* 高斯演算法 (Gauss Algorithm)
+* Quick Sort
 
   ```C
-  // Time Complexity :O(n)
-  int add(int N){
-    int i, ans = 0;
-    for (int i = 0; i < N; i++){
-        ans += i;
-    }
-    printf("ans =%d", ans);
-    return ans;
-  }
-
-  // Time Complexity :O(1)
-  int gaussianAdd(int N){
-    int ans = 0;
-    ans = (1 + N) * N / 2;
-    printf("ans of gaussianAdd() =%d\n", ans);
-    return ans;
+  void quickSort(int* nums, int head, int tail){
+      if(head>=tail){return;}
+      int comp=nums[head];
+      int i=head,j=tail;
+      while(i<j){
+          while(nums[j]>=comp && i<j){j--;}
+          nums[i]=nums[j];
+          nums[j]=comp;
+          while(nums[i]<=comp && i<j){i++;}
+          nums[j]=nums[i];
+          nums[i]=comp;
+      }
+      quickSort(nums,head,i-1);
+      quickSort(nums,j+1,tail);
   }
   ```
+
+* Merge Sort
+
+### 搜尋 (Search) ###
+
+* 線性搜尋 (Linear Search)
 
 * 二元搜尋演算法 (Binary Search Algorithm)
 
@@ -884,6 +1045,30 @@
               return mid;
       }
       return -1; // not found
+  }
+  ```
+
+### Other ###
+
+* 高斯演算法 (Gauss Algorithm)
+
+  ```C
+  // Time Complexity :O(n)
+  int add(int N){
+    int i, ans = 0;
+    for (int i = 0; i < N; i++){
+        ans += i;
+    }
+    printf("ans =%d", ans);
+    return ans;
+  }
+
+  // Time Complexity :O(1)
+  int gaussianAdd(int N){
+    int ans = 0;
+    ans = (1 + N) * N / 2;
+    printf("ans of gaussianAdd() =%d\n", ans);
+    return ans;
   }
   ```
 
