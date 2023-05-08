@@ -9,14 +9,19 @@
     <p>Software Architecture</p>
 </div>
 
-* Linux 開機流程
-  * 步驟
-    * BIOS -> MBR -> GRUB -> Kernel -> Init -> Runlevel Scripts
-  * 名詞
-    * 基本輸入輸出系統 (Basic Input/Output System, BIOS)
-    * 主開機紀錄、主引導磁區 (Master Boot Record, MBR)
-    * 啟動載入程式 (GNU GRUB, GRUB)
-    * 核心、內核 (Kernel)
+## 重點 ##
+
+* Process -> Thread -> Scheduling -> Synchronization -> Deadlock -> Memory Management -> Virtual Memory -> File System
+
+## Linux 開機流程 ##
+
+* 步驟
+  * BIOS -> MBR -> GRUB -> Kernel -> Init -> Runlevel Scripts
+* 名詞
+  * 基本輸入輸出系統 (Basic Input/Output System, BIOS)
+  * 主開機紀錄、主引導磁區 (Master Boot Record, MBR)
+  * 啟動載入程式 (GNU GRUB, GRUB)
+  * 核心、內核 (Kernel)
 
 ## Table of contents ##
 
