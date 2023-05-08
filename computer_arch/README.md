@@ -4,6 +4,14 @@
 /* Hi, this is Computer Architecture page. */
 ```
 
+## 課程說明 ##
+
+* 了解計算機系統的工作原理。課程重點將放在
+  1. 計算機性能的特徵是什麼
+  2. 指令集設計及其與編譯器的交互
+  3. 基本構建塊：I/O、內存、數據路徑、控制
+  4. 流水線數據路徑
+
 * Computer Architecture = ISA + Machine Organization
   * 計算機系統結構、電腦系統架構 (Computer Architecture)
   * 指令集架構 (Instruction Set Architecture, ISA)
@@ -108,3 +116,17 @@
 
 * 阿姆達爾法則 (Amdahl's law)
   * 在計算機系統結構中，持續最佳化某個元件對整體的最佳化是有上限的；從另一個角度來看，就是在進行整體的最佳化時，應該挑選影響較重大者，已得到較好的效果。
+
+## 組合語言 (Assembly language) ##
+
+### 程序呼叫 (Procedure Calling, PC) ###
+
+* caller
+* callee
+* 在分散式系統中，使用遠端程序呼叫 (Remote Procedure Call, RPC)。
+
+### Assembler Pseudoinstructions ###
+
+## 編譯器 (Compiler) ##
+
+### 強度折減 (Strength reduction) ###
