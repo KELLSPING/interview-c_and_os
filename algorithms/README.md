@@ -17,3 +17,19 @@
   2. 有限性 (finiteness) : 終止於有限步數。
   3. 有效性 (effectiveness) : 用紙和筆畫出，必須是基本的且可行的。
   4. 過程 (procedure) : 按邏輯順序排列的特定步驟。
+
+## Stable Matching ##
+
+* perfecting matching without unstable pairs.
+
+## Scheduling ##
+
+### Interval Scheduling ###
+
+### Weighted Interval Scheduling ###
+
+## Graph ##
+
+### Independent Set ###
+
+### Comprtitive Facility Location ###
