@@ -4,15 +4,50 @@
 /* Hi, this is Computer Architecture page. */
 ```
 
+## 課程說明 ##
+
+* 了解計算機系統的工作原理。課程重點將放在
+  1. 計算機性能的特徵是什麼
+  2. 指令集設計及其與編譯器的交互
+  3. 基本構建塊：I/O、內存、數據路徑、控制
+  4. 流水線數據路徑
+
 * Computer Architecture = ISA + Machine Organization
   * 計算機系統結構、電腦系統架構 (Computer Architecture)
   * 指令集架構 (Instruction Set Architecture, ISA)
   * 電腦組織 (Machine Organization)
 
 <div style="text-align:center">
-    <img src="../img/computer_architecture.jpg" alt= “computer_architecture” width="70%">
+    <img src="../img/computer_architecture.jpg" alt= "computer_architecture" width="70%">
     <p>Computer Architecture</p>
 </div>
+
+## 指令集架構 (Instruction Set Architecture, ISA) ##
+
+* 又稱指令集或指令集體系
+* 指令集與微架構 (又稱計算機組織，microarchitecture) 不同
+* 常見種類
+  * 複雜指令集運算 (Complex Instruction Set Computing, CISC)
+    1. x86 架構，微處理器 (ex. Intel Pentium/Celeron/Xeon, AMD Athlon/Duron/Sempron)
+    2. x86-64 架構，Intel 64 (ex. Intel Core/Celeron/Pentium/Xeon, AMD64 Phenom/Athlon/Opteron/AMD APU/Ryzen/EPYC)
+  * 精簡指令集運算 (Reduced Instruction Set Computing, RISC)
+    1. MIPS
+    2. ARM
+    3. RISC-V
+  * 顯式並行指令運算 (Explicitly Parallel Instruction Computing, EPIC)
+    1. IA-64 架構 (ex. Intel Itanium)
+  * 超長指令字指令集運算 (VLIW)
+
+### MIPS ###
+
+* MIPS Registers
+  * 32 個暫存器，每個都是 32 bits 的寬度，指令也是 32 bits
+    * design principle 2: smaller is faster
+
+* 3 種指令的類型
+  1. R-type
+  2. I-type
+  3. J-type
 
 ## Performance ##
 
@@ -50,7 +85,14 @@
   * dynamic
   * static
 
-## Register Architecture ##
+## Computer Memory ##
+
+<div style="text-align:center">
+    <img src="../img/computer_memory.png" alt= "computer_memory" width="70%">
+    <p>Computer Memory</p>
+</div>
+
+### Register Architecture ###
 
 * 累加器 (Accumulator)
   * 1 個 register
@@ -75,8 +117,16 @@
 * 阿姆達爾法則 (Amdahl's law)
   * 在計算機系統結構中，持續最佳化某個元件對整體的最佳化是有上限的；從另一個角度來看，就是在進行整體的最佳化時，應該挑選影響較重大者，已得到較好的效果。
 
-## MIPS ##
+## 組合語言 (Assembly language) ##
 
-* MIPS Registers
-  * 32 registers, each is 32 bits wide
-    * design principle 2: smaller is faster
+### 程序呼叫 (Procedure Calling, PC) ###
+
+* caller
+* callee
+* 在分散式系統中，使用遠端程序呼叫 (Remote Procedure Call, RPC)。
+
+### Assembler Pseudoinstructions ###
+
+## 編譯器 (Compiler) ##
+
+### 強度折減 (Strength reduction) ###

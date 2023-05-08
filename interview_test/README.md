@@ -184,10 +184,60 @@ foo[0] = 1; // error: assignment of read-only location '*foo'
 * Linux
 * Network
 
-## CC2541 OSAL ##
+## Hon Hai ##
 
-* 作業系統層抽象層 (operating system abstraction layer, OSAL)
+* 基本數據型態佔據多少 bytes
+  * 考慮 32 bits 或 64 bits
 
-* 一種支援多任務運行的系統資源分配機制。但還不能算是真正的操作系統。
+* 假設要從 32 位元寬的 register 讀取/寫入，宣告一個適當的變量來存取中間值。
 
-## RTOS 與 Linux 的區別 ##
+  ```C
+  #include <stdint.h>
+  uint32_t reg_value;
+  ```
+
+* 宣告是否有效? 並且代表甚麼意思
+  * const (char)* c1
+    * 有效
+    * c1 是一個"指向字元常量的指標"。指針的指向可以變，指向的內容不可以變。
+  * (char) const * c2
+    * 有效
+    * c2 是一個"指向常量字元的指標"。指針的指向可以變，指向的內容不可以變。
+  * (char*) const c3
+    * 有效
+    * c3 是一個"指向字元的常量指標"。指針的指向不可以變，指向的內容可以變。
+  * (char*) c4 const
+    * 無效
+    * 語法錯誤，應該將 const 放置於識別字前面。
+
+* 宣告一個新的 structure，裡面包含一個整數
+
+  ```C
+  struct my_struct {
+    int my_integer;
+  };
+  ```
+
+* 給定一個指向整數的指針，該整數屬於您在前面問題中定義的結構類型變量。寫一個宏定義來找到包含該整數的變量。
+
+  ```C
+  struct my_struct example;
+  int *p = &example.my_integer;
+  ....
+  ```
+
+* 寫一個函數，接受一個 32-bit 的整數，並回傳該正數除以 256 的餘數。
+
+  ```C
+  #include <stdint.h>
+  uint32_t remainder_of_mod_256(uint32_t input){
+      // return input % 256; // method 1
+      return input & 0xFF; // method 2
+  }
+  ```
+
+* 請解釋什麼是循環緩衝區 (circular buffer)?
+
+* 如何判斷循環緩衝區是空還是滿？
+
+* 一個單項鏈結串列形成了一個環形。假設你知道 head 節點，寫一個 function 去檢測環形中 head 節點
