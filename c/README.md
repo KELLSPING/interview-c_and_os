@@ -648,7 +648,7 @@ printf("The maximum value of INT = %x", INT_MAX); // 0x7fffffff
   const int *a; // a 是一個 pointer，指向 const int 變數
   int const *a; // a 是一個 pointer，指向 const int 變數
   int * const a; // a 是一個常數型指標 (const pointer)，指向 int 變數
-  int const * a const; // a 是一個 const pointer，指向 const int 變數
+  int const * const a ; // a 是一個 const pointer，指向 const int 變數
   ```
 
   ```C
