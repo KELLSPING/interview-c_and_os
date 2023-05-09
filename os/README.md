@@ -16,7 +16,7 @@
 ## Linux 開機流程 ##
 
 * 步驟
-  * BIOS -> MBR -> GRUB -> Kernel -> Init -> Runlevel Scripts
+  * Power-On Self-Test (POST) -> init BIOS/UEFI -> MBR -> Boot Loader (ex. GRUB) -> Kernel (ex. Linux OS) -> Init Process (ex. systemd, SysV init) -> Runlevel Scripts
 * 名詞
   * 基本輸入輸出系統 (Basic Input/Output System, BIOS)
   * 主開機紀錄、主引導磁區 (Master Boot Record, MBR)
