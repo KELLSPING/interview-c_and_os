@@ -33,10 +33,6 @@
   * 透過 kernel mode 跟 user mode 來保護硬體。
   * 提供 high level 的 system call 讓使用者不能直接操作硬體，簡化操作，也更加有效率等。
 
-## CPU 排班 (CPU Scheduling) ##
-
-* 當討論一般的排班概念時，使用的是行程排班 (process scheduling) ；而提到特定執行緒觀念時，使用的是執行緒排班 (thread scheduling) 。
-
 ## 基本輸入輸出系統 (Basic Input/Output System, BIOS) ##
 
 * 說明
@@ -165,6 +161,13 @@
   * Semaphore 原本 thread 上的鎖，可以由自己或其他的 thread 解開。
   * 可以設定要讓幾個 thread 進入 critical section，當設定為 1 時，變向的達到互斥鎖的功用。
 
+## 臨界區段 (Critical section, CS) ##
+
+* 說明
+  * 指的是一個存取共用資源 (例如：共用裝置或是共用記憶體) 的程式片段，而這些共用資源有無法同時被多個執行緒存取的特性。
+
+* 不是臨界區段的程式，稱為剩餘區 (Remainder Section, RS) 簡稱。
+
 ## Pipeline ##
 
 * 說明
@@ -245,3 +248,98 @@
     static int num_d; 
   }
   ```
+
+## 行程間通訊 (Interprocess Communication, IPC) ##
+
+* 腳色
+  * 資料的生產者 producer
+  * 資料的消費者 consumer
+
+* 3 種 buffer 型態
+  * zero capacity
+  * bounded capacity
+  * unbounded capacity
+
+### 訊息溝通 (message passing) ###
+
+* send(), receive()
+* 傳遞方式
+  * 直接傳
+  * 間接傳 (透過 mailbox)
+    * blocking
+    * non-blocking
+
+### 記憶體共享 (shared memory) ###
+
+* read(), write()
+
+## 中央處理器 (Central Processing Unit, CPU) ##
+
+### 單核 (Single-core) ###
+
+* 說明
+  * 一個 CPU，且只有一個核心
+
+* 程式處理方式
+  * single-thread
+
+### 多核 (Multi-core) ###
+
+* 說明
+  * 一個 CPU，裡面包含多核心
+  * 多核可以更快速的執行單個 process
+
+* 可適用
+  * multi-thread : 程式可以設計成 multi-thread 方式，thread 將會被並行處理
+  * time-sharing : 在多個 process 之間切換，讓人以為是 multi-tasking
+
+### 多元處理 (Multi-processor, Parallel) ###
+
+* 說明
+  * 多個 CPU，並且共享 main memory
+  * 多元處理可以更快速的執行多個 process
+  * 多元處理比多核更可靠，因為 CPU 之間不會互相干擾，容錯性高
+
+* 可適用
+  * multi-tasking
+
+### Multi-computer ###
+
+* 說明
+  * 多個 CPU，且有各自的 main memory
+
+## CPU 排班 (CPU Scheduling) ##
+
+* 亦即 CPU 的作業方式
+
+* 當討論一般的排班概念時，使用的是行程排班 (process scheduling) ；而提到特定執行緒觀念時，使用的是執行緒排班 (thread scheduling) 。
+
+* 演進方式
+  * Batch processing -> Multi-programming -> Time-Sharing -> Multi-tasking
+
+### 批次處理 (Batch processing) ###
+
+### 多元程式處理、多重程式 (Multi-programming) ###
+
+* 說明
+  * 同時將多個 program 載入 RAM 中
+  * 同時將多個 program 載入 RAM 中，即是多個 process 已處於 ready 狀態
+
+* 作用
+  * 提高 CPU 的使用率，避免 CPU 閒置 (idle)
+
+### 分時系統 (Time-Sharing) ###
+
+* 說明
+  * 系統輪流分配 CPU 給每個 process
+
+### 多任務處理、多工處理 (Multi-tasking) ###
+
+* 說明
+  * 電腦同時間可以執行多個 process
+
+* 種類
+  * 協調式 Cooperative
+  * 先佔式 Preemptive : 由 CPU 來強制 App 交出控制權，系統的穩定度也相對提高。
+
+* 單工處理 (Single-tasking)
