@@ -112,7 +112,9 @@
   * 非阻塞 (unblock)
   * 結束 (finish)
 
-## 死結、死鎖 (Deadlock) ##
+## 鎖 (Lock) ##
+
+### 死結、死鎖 (Deadlock) ###
 
 * 說明
   * 當兩個以上的 process，都在等待他方先釋放資源。 (兩人互不相讓，都想要對方先讓開)
@@ -123,10 +125,25 @@
   * No preemption : 資源只能由process自己釋放，不能由其他方式釋放。
   * Circular wait : 每個 process 都握有另一個 process 請求的資源，導致每一個 process 都在等待另一個process釋放資源。
 
-## 活結 (Livelock) ##
+### 活結 (Livelock) ###
 
 * 說明
   * process 彼此釋放資源又同時占用對方釋放的資源。 (兩人互相禮讓，卻又恰巧不停地站到同一側)
+
+### 自旋鎖 (Spinlock) ###
+
+### 互斥鎖 (Mutual exclusion, Mutex) ###
+
+* 說明
+  * 為了防止 concurrency 狀況下出現 race condition
+  * Mutex 只能由上鎖的 thread 解鎖
+  * 只能讓一個 thread 進入 critical section
+
+### 號誌 (Semaphore) ###
+
+* 說明
+  * Semaphore 原本 thread 上的鎖，可以由自己或其他的 thread 解開。
+  * 可以設定要讓幾個 thread 進入 critical section，當設定為 1 時，變向的達到互斥鎖的功用。
 
 ## 並發、併發 (Concurrency) ##
 
@@ -145,21 +162,6 @@
 
 * 又稱為競爭危害（race hazard）
 * 若是某個記憶體內的資料，會同時被兩個不同的 thread 進行存取，可以先檢查這兩個 thread 寫入同份資料時是否存在 "happens-before relation"，若不存在此關係，便存在 race condition。
-
-## 自旋鎖 (Spinlock) ##
-
-## 互斥鎖 (Mutual exclusion, Mutex) ##
-
-* 說明
-  * 為了防止 concurrency 狀況下出現 race condition
-  * Mutex 只能由上鎖的 thread 解鎖
-  * 只能讓一個 thread 進入 critical section
-
-## 號誌 (Semaphore) ##
-
-* 說明
-  * Semaphore 原本 thread 上的鎖，可以由自己或其他的 thread 解開。
-  * 可以設定要讓幾個 thread 進入 critical section，當設定為 1 時，變向的達到互斥鎖的功用。
 
 ## 臨界區段 (Critical section, CS) ##
 

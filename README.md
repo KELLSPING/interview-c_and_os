@@ -112,3 +112,5 @@
 
 * "Don’t Let Best be Enemy of Better." - 吳軍
   * 最好，是更好的敵人。
+
+* "為了堅持理想，必須做最小的妥協" - 柯文哲
